@@ -19,6 +19,6 @@ public class BattleStarter : MonoBehaviour
 
     public void LoadBattle()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Battle");
     }
 }
