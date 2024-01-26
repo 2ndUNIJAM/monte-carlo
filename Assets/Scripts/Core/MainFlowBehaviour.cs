@@ -18,7 +18,7 @@ namespace MonteCarlo.Core
         void Awake()
         {
             turn = new TurnStateMachine();
-            player = new PlayerBase(100);
+            player = new PlayerBase(BattleDataHolder.Instance.player.playerHP);
             enemy = new EnemyBase(100);
         }
         public TurnType getTurn()
