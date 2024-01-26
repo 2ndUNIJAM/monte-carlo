@@ -10,7 +10,7 @@ namespace MonteCarlo.Core
     {
         private TurnStateMachine turn;
         private PlayerBase player;
-        private List<ICommand> commands = new();
+        private readonly List<ICommand> commands = new();
 
         void Awake()
         {
