@@ -11,10 +11,6 @@ namespace MonteCarlo.UI
         [SerializeField] private Slider HpBarValue;
         private float HpValue;
 
-        void Start()
-        {
-        }
-
         void Update()
         {
             if (character is CharacterType.Player)
