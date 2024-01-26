@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MonteCarlo.Data;
+using MonteCarlo.Enemy;
 using MonteCarlo.Player;
 using MonteCarlo.Struct;
 using UnityEngine;
@@ -11,23 +12,28 @@ namespace MonteCarlo.Core
 
         private TurnStateMachine turn;
         private PlayerBase player;
+        private EnemyBase enemy;
         private readonly List<ICommand> commands = new();
 
         void Awake()
         {
             turn = new TurnStateMachine();
             player = new PlayerBase(100);
-
+            enemy = new EnemyBase(100);
         }
         public TurnType getTurn()
         {
             return turn.Turn;
         }
 
-        public float getHpRatio() {
+        public float getPlayerHpRatio()
+        {
             return player.getHpRatio();
         }
-
+        public float getEnemyHpRatio()
+        {
+            return enemy.getHpRatio();
+        }
 
         void Update()
         {
