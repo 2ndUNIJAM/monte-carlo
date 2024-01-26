@@ -29,6 +29,10 @@ namespace MonteCarlo.Core
                         if (turn.Turn is Data.TurnType.Player)
                             turn.ChangeTurn();
                         break;
+                    case EnemyCommandTurnEnd:
+                        if (turn.Turn is Data.TurnType.Enemy)
+                            turn.ChangeTurn();
+                        break;
                     default:
                         Debug.Log($"Not implemented {cmd}");
                         break;
