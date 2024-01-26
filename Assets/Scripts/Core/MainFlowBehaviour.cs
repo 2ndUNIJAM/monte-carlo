@@ -5,12 +5,11 @@ using UnityEngine;
 
 namespace MonteCarlo.Core
 {
-    // TODO: singleton.
-    public class MainFlowBehaviour : MonoBehaviour
+    public class MainFlowBehaviour : SingletonBehaviour<MainFlowBehaviour>
     {
         private TurnStateMachine turn;
         private PlayerBase player;
-        private List<ICommand> commands = new();
+        private readonly List<ICommand> commands = new();
 
         void Awake()
         {
@@ -26,8 +25,12 @@ namespace MonteCarlo.Core
                 switch (cmd)
                 {
                     case PlayerCommandTurnEnd:
-
-
+                        if (turn.Turn is Data.TurnType.Player)
+                            turn.ChangeTurn();
+                        break;
+                    case EnemyCommandTurnEnd:
+                        if (turn.Turn is Data.TurnType.Enemy)
+                            turn.ChangeTurn();
                         break;
                     default:
                         Debug.Log($"Not implemented {cmd}");
