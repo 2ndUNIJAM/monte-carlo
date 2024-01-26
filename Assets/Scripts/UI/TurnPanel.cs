@@ -3,32 +3,35 @@ using TMPro;
 using MonteCarlo.Data;
 using MonteCarlo.Core;
 
-public class TurnPanel : MonoBehaviour
+namespace MonteCarlo.UI
 {
-    [SerializeField] private TextMeshProUGUI turnText;
-
-    private void Start()
+    public class TurnPanel : MonoBehaviour
     {
-        turnText = GetComponent<TextMeshProUGUI>();
-        turnText.text = "my turn";
-    }
+        [SerializeField] private TextMeshProUGUI turnText;
 
-    private string GetTurnString()
-    {
-        string result = "";
-        if (MainFlowBehaviour.Instance.getTurn() is TurnType.Player)
+        private void Start()
         {
-            result = "my turn";
+            turnText = GetComponent<TextMeshProUGUI>();
+            turnText.text = "my turn";
         }
-        else if (MainFlowBehaviour.Instance.getTurn() is TurnType.Enemy)
-        {
-            result = "enemy turn";
-        }
-        return result;
-    }
 
-    public void Update()
-    {
-        turnText.text = GetTurnString();
+        private string GetTurnString()
+        {
+            string result = "";
+            if (MainFlowBehaviour.Instance.getTurn() is TurnType.Player)
+            {
+                result = "my turn";
+            }
+            else if (MainFlowBehaviour.Instance.getTurn() is TurnType.Enemy)
+            {
+                result = "enemy turn";
+            }
+            return result;
+        }
+
+        public void Update()
+        {
+            turnText.text = GetTurnString();
+        }
     }
 }

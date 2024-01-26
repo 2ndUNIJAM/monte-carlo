@@ -2,20 +2,22 @@ using MonteCarlo.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HpSlider : MonoBehaviour
+namespace MonteCarlo.UI
 {
-    private Slider HpBarValue;
-    private float playerHpValue;
-
-    void Start()
+    public class HpSlider : MonoBehaviour
     {
-        HpBarValue = GetComponent<Slider>();
-        playerHpValue = MainFlowBehaviour.Instance.getHpRatio();
-    }
+        [SerializeField] private Slider HpBarValue;
+        private float playerHpValue;
 
-    void Update()
-    {
-        playerHpValue = MainFlowBehaviour.Instance.getHpRatio();
-        HpBarValue.value = playerHpValue;
+        void Start()
+        {
+            playerHpValue = MainFlowBehaviour.Instance.getHpRatio();
+        }
+
+        void Update()
+        {
+            playerHpValue = MainFlowBehaviour.Instance.getHpRatio();
+            HpBarValue.value = playerHpValue;
+        }
     }
 }
