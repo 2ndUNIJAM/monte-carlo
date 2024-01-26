@@ -16,12 +16,16 @@ namespace MonteCarlo.Core
         void Awake()
         {
             turn = new TurnStateMachine();
-            player = new PlayerBase();
+            player = new PlayerBase(100);
 
         }
         public TurnType getTurn()
         {
             return turn.Turn;
+        }
+
+        public float getHpRatio() {
+            return player.getHpRatio();
         }
 
 
