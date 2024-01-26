@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MonteCarlo.Data;
 using MonteCarlo.Player;
 using MonteCarlo.Struct;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace MonteCarlo.Core
 {
     public class MainFlowBehaviour : SingletonBehaviour<MainFlowBehaviour>
     {
+
         private TurnStateMachine turn;
         private PlayerBase player;
         private readonly List<ICommand> commands = new();
@@ -17,6 +19,11 @@ namespace MonteCarlo.Core
             player = new PlayerBase();
 
         }
+        public TurnType getTurn()
+        {
+            return turn.Turn;
+        }
+
 
         void Update()
         {
