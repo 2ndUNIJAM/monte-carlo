@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using MonteCarlo.Core;
 using TMPro;
 using MonteCarlo.Data;
+using MonteCarlo.Core;
 
-namespace MonteCarlo.Core
+namespace MonteCarlo.UI
 {
-    public class TurnManager : MonoBehaviour
+    public class TurnPanel : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI turnText;
 
@@ -23,11 +20,11 @@ namespace MonteCarlo.Core
             string result = "";
             if (MainFlowBehaviour.Instance.getTurn() is TurnType.Player)
             {
-                result= "my turn";
+                result = "my turn";
             }
             else if (MainFlowBehaviour.Instance.getTurn() is TurnType.Enemy)
             {
-                result= "enemy turn";
+                result = "enemy turn";
             }
             return result;
         }
