@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace MonteCarlo.Core
 {
-    // TODO: singleton.
-    public class MainFlowBehaviour : MonoBehaviour
+    public class MainFlowBehaviour : SingletonBehaviour<MainFlowBehaviour>
     {
         private TurnStateMachine turn;
         private PlayerBase player;
