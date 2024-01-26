@@ -26,8 +26,8 @@ namespace MonteCarlo.Core
                 switch (cmd)
                 {
                     case PlayerCommandTurnEnd:
-
-
+                        if (turn.Turn is Data.TurnType.Player)
+                            turn.ChangeTurn();
                         break;
                     default:
                         Debug.Log($"Not implemented {cmd}");
