@@ -1,5 +1,6 @@
 using MonteCarlo.Data;
 using MonteCarlo.Struct;
+using UnityEngine;
 
 namespace MonteCarlo.Player
 {
@@ -51,6 +52,14 @@ namespace MonteCarlo.Player
         public void healHP()
         {
             Hp += data.Heal.HealAmount;
+        }
+
+        public (bool isSucceed, int damage) AttackAction()
+        {
+            var attackData = data.Attack;
+            bool isSucceed = Random.Range(0f, 1f) < attackData.Probability;
+            int damage = isSucceed ? attackData.Damage : 0;
+            return (isSucceed, damage);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace MonteCarlo.UI
         [SerializeField] private Sprite[] cardResourceImage;
         private Image cardImage;
 
+        const int MULTIPLER = 100;
+
         void Start()
         {
             button.onClick.AddListener(() =>
@@ -62,7 +64,7 @@ namespace MonteCarlo.UI
         private void changeActionButton(int value, float probability, int spriteIdx)
         {
             valueText.text = $"{value.ToString()}";
-            probabilityText.text = $"{probability.ToString()}%";
+            probabilityText.text = $"{(probability * MULTIPLER).ToString()}%";
             cardImage.sprite = cardResourceImage[spriteIdx];
         }
     }
