@@ -7,9 +7,12 @@ namespace MonteCarlo.Data
     public class PlayerMasterDataModel : ScriptableObject
     {
         public int MaxHP;
-        public int HealAmount;
 
         [Header("Attack")]
         public AttackData Attack;
+        [Header("Defence")]
+        public DefenceData Defence;
+        [Header("Heal")]
+        public HealData Heal;
     }
 }

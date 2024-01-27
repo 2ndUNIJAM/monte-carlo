@@ -13,6 +13,7 @@ namespace MonteCarlo.Enemy
 
         public EnemyBase(EnemyMasterDataModel data)
         {
+            this.data = data;
             Hp = data.MaxHP;
         }
 
