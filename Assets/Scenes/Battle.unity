@@ -1232,11 +1232,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &238865637 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7930885779754641841, guid: 20b675ea6270f7c48a8ca1acb308b745, type: 3}
-  m_PrefabInstance: {fileID: 1163340765252531686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &238865638 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6937770903908861066, guid: 20b675ea6270f7c48a8ca1acb308b745, type: 3}
@@ -4011,6 +4006,7 @@ MonoBehaviour:
   - {fileID: 1613120133}
   - {fileID: 447125023}
   characterType: 1
+  type: 6
 --- !u!1 &819657383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7065359341685994670, guid: 216ec3a8f7b6e1340b9a00219efd5ee1, type: 3}
@@ -4829,7 +4825,7 @@ PrefabInstance:
     - target: {fileID: 8762289778420898332, guid: bfae9caf7c0e6714a9da4199cb249d45, type: 3}
       propertyPath: enemyRoll
       value: 
-      objectReference: {fileID: 238865637}
+      objectReference: {fileID: 819657383}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8706,6 +8702,7 @@ MonoBehaviour:
   - {fileID: 1276801080}
   - {fileID: 1993619916}
   characterType: 2
+  type: 4
 --- !u!1 &2043948290
 GameObject:
   m_ObjectHideFlags: 0
@@ -8842,7 +8839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 889bb84bedf820945924c907ed7a985c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0521773e00110df4fb3d3144ac38be77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
