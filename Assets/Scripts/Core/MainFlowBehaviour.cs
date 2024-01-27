@@ -91,7 +91,7 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case PlayerCommandTurnEnd:
-                    turn.NextTurn();
+                    turn.ApplyResult(false, 0);
                     break;
                 case PlayerCommandAttack:
                     var (isSucceed, damage) = player.AttackAction();
@@ -146,10 +146,10 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case EnemyCommandTurnEnd:
-                    turn.NextTurn();
+                    turn.ApplyResult(false, 0);
                     break;
                 case RevolverGunCommandTurnEnd:
-                    if (turn.Turn is Data.TurnType.Enemy)
+                    if (turn.Turn is TurnType.Enemy)
                         player.DecreaseHp(revolverToy.revolverAttack());
                     break;
                 default:
