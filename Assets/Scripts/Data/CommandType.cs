@@ -8,5 +8,9 @@ namespace MonteCarlo.Data
         PlayerDefence,
         PlayerHeal,
         RevolverGunTurnEnd,
+        PlayerRollEnd,
+        PlayerResultEnd,
+        EnemyRollEnd,
+        EnemyResultEnd,
     }
 }
