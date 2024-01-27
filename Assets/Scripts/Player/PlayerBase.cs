@@ -44,14 +44,38 @@ namespace MonteCarlo.Player
             Hp -= value;
         }
 
-        public void AddDefence(int value)
+        public ActionResult ShieldUp()
         {
-            Defence += value;
+            var defenceData = data.Defence;
+            bool isSuccess = Random.Range(0f, 1f) < defenceData.Probability;
+
+            if (isSuccess)
+                Defence += data.Defence.DefenceAmount;
+
+            return new ActionResult()
+            {
+                IsSuccess = isSuccess,
+                Target = isSuccess ? CharacterType.Player : CharacterType.None,
+                Result = isSuccess ? ResultType.GetShield : ResultType.None,
+                Value = isSuccess ? defenceData.DefenceAmount : 0,
+            };
         }
 
-        public void HealHP()
+        public ActionResult HealHP()
         {
-            Hp += data.Heal.HealAmount;
+            var healData = data.Heal;
+            bool isSuccess = Random.Range(0f, 1f) < healData.Probability;
+
+            if (isSuccess)
+                Hp += healData.HealAmount;
+
+            return new ActionResult()
+            {
+                IsSuccess = isSuccess,
+                Target = isSuccess ? CharacterType.Enemy : CharacterType.None,
+                Result = isSuccess ? ResultType.GetDamage : ResultType.None,
+                Value = isSuccess ? healData.HealAmount : 0,
+            };
         }
 
         public ActionResult AttackAction()

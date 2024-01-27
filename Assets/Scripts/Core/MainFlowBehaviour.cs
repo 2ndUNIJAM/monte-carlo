@@ -98,21 +98,25 @@ namespace MonteCarlo.Core
                 case PlayerCommandAttack:
                     {
                         var result = player.AttackAction();
-                        Debug.Log("공격 성공?" + result.IsSuccess);
-                        Debug.Log(result.Value + " 로 공격 성공");
+                        Debug.Log($"공격 결과: {result.IsSuccess}, 데미지: {result.Value}");
                         enemy.DecreaseHp(result.Value);
                         turn.ApplyResult(result);
                         break;
                     }
                 case PlayerCommandDefence:
-                    player.AddDefence(5);
-                    Debug.Log("방어도 획득");
-
-                    break;
+                    {
+                        var result = player.ShieldUp();
+                        Debug.Log($"방어 결과: {result.IsSuccess}, 실드량: {result.Value}");
+                        turn.ApplyResult(result);
+                        break;
+                    }
                 case PlayerCommandHeal:
-                    player.HealHP();
-                    Debug.Log(player.Hp + "만큼 힐 성공");
-                    break;
+                    {
+                        var result = player.HealHP();
+                        Debug.Log($"회복 결과: {result.IsSuccess}, 힐량: {result.Value}");
+                        turn.ApplyResult(result);
+                        break;
+                    }
                 default:
                     Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
