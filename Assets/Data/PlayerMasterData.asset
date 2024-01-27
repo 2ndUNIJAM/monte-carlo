@@ -15,7 +15,7 @@ MonoBehaviour:
   MaxHP: 100
   Attack:
     Damage: 10
-    Probability: 0.2
+    Probability: 0.5
   Defence:
     DefenceAmount: 30
     Probability: 0.4
