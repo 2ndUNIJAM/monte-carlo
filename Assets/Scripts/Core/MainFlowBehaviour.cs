@@ -13,6 +13,7 @@ namespace MonteCarlo.Core
         public float PlayerHpRatio => player.HpRatio;
         public float EnemyHpRatio => enemy.HpRatio;
 
+
         private TurnStateMachine turn;
         private PlayerBase player;
         private EnemyBase enemy;
@@ -65,6 +66,24 @@ namespace MonteCarlo.Core
         {
             return player.AttackInfo.Probability;
         }
+        public int getPlayerDefenceDamage()
+        {
+            return player.DefenceInfo.DefenceAmount;
+        }
+        public float getPlayerDefenceProbability()
+        {
+            return player.DefenceInfo.Probability;
+        }
+
+        public int getPlayerHealDamage()
+        {
+            return player.HealInfo.HealAmount;
+        }
+        public float getPlayerHealProbability()
+        {
+            return player.HealInfo.Probability;
+        }
+
 
         private void PlayerTurn(ICommand command)
         {

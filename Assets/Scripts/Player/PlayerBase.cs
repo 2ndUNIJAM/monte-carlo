@@ -6,19 +6,27 @@ namespace MonteCarlo.Player
     public class PlayerBase
     {
         public int MaxHp => data.MaxHP;
+        public int MaxDefence => data.MaxDefence;
+        public int MaxHeal => data.MaxHeal;
         public AttackData AttackInfo => data.Attack;
+        public DefenceData DefenceInfo => data.Defence;
+        public HealData HealInfo => data.Heal;
 
         public int Hp { get; private set; }
         public float HpRatio => (float)Hp / MaxHp;
         public int Defence { get; private set; }
+        public float DefenceRatio => (float)Defence / MaxDefence;
+        public int Heal { get; private set; }
+        public float HealRatio => (float)Heal / MaxHeal;
 
         private readonly PlayerMasterDataModel data;
 
         public PlayerBase(PlayerMasterDataModel data)
         {
             this.data = data;
-
             Hp = data.MaxHP;
+            Defence = data.MaxDefence;
+            Heal = data.MaxHeal;
         }
 
         public void DecreaseHp(int value)
@@ -46,8 +54,7 @@ namespace MonteCarlo.Player
 
         public void healHP()
         {
-            Hp += data.HealAmount;
+            Hp += data.Heal.HealAmount;
         }
-
     }
 }

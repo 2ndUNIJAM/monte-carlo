@@ -11,9 +11,10 @@ namespace MonteCarlo.UI
     {
         [SerializeField] private Button button;
         [SerializeField] private CommandType type;
-        [SerializeField] private TextMeshProUGUI TitleText;
         [SerializeField] private TextMeshProUGUI valueText;
         [SerializeField] private TextMeshProUGUI probabilityText;
+        [SerializeField] private Sprite[] cardResourceImage;
+        private Image cardImage;
 
         void Start()
         {
@@ -23,37 +24,31 @@ namespace MonteCarlo.UI
                 MainFlowBehaviour.Instance.AddCommand(cmd);
             });
 
-            TitleText.text = "";
+            cardImage = GetComponent<Image>();
             valueText.text = "";
             probabilityText.text = "";
             switch (type)
             {
                 case CommandType.PlayerAttack:
-                    TitleText.text = "공격";
-                    valueText.text = "";
-                    probabilityText.text = string.Format("{0}%", getProbabilityText());
+                    valueText.text = string.Format("{0}", MainFlowBehaviour.Instance.getPlayerAttackDamage());
+                    probabilityText.text = string.Format("{0}%", MainFlowBehaviour.Instance.getPlayerAttackProbability());
+                    cardImage.sprite = cardResourceImage[0];
                     break;
                 case CommandType.PlayerDefence:
-                    TitleText.text = "방어";
-                    probabilityText.text = "";
+                    valueText.text = string.Format("{0}", MainFlowBehaviour.Instance.getPlayerDefenceDamage());
+                    probabilityText.text = string.Format("{0}%", MainFlowBehaviour.Instance.getPlayerDefenceProbability());
+                    cardImage.sprite = cardResourceImage[2];
                     break;
                 case CommandType.PlayerHeal:
-                    TitleText.text = "회복";
-                    //probabilityText.text =;
+                    valueText.text = string.Format("{0}", MainFlowBehaviour.Instance.getPlayerHealDamage());
+                    probabilityText.text = string.Format("{0}%", MainFlowBehaviour.Instance.getPlayerHealProbability());
+                    cardImage.sprite = cardResourceImage[4];
                     break;
                 case CommandType.RevolverGunTurnEnd:
-                    //TitleText.text = ;
                     break;
                 default:
                     break;
             }
-        }
-
-
-        private int getProbabilityText()
-        {
-            return 50;
-            //return MainFlowBehaviour.Instance.getPlayerAttackDamage();
         }
     }
 }

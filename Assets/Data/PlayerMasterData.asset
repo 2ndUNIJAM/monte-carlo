@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: PlayerMasterData
   m_EditorClassIdentifier: 
   MaxHP: 100
-  HealAmount: 0
+  MaxDefence: 100
+  MaxHeal: 100
   Attack:
-    Damage: 0
-    Probability: 0
+    Damage: 10
+    Probability: 20
+  Defence:
+    DefenceAmount: 30
+    Probability: 40
+  Heal:
+    HealAmount: 50
+    Probability: 60
