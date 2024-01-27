@@ -24,7 +24,15 @@ namespace MonteCarlo.Core
             switch (Turn)
             {
                 case TurnType.PlayerRandomRoll:
-                    Turn = TurnType.PlayerActionResult;
+                    if (PlayerResult.IsSuccess)
+                    {
+                        Turn = TurnType.PlayerActionResult;
+                    }
+                    else
+                    {
+                        Turn = TurnType.EnemyRandomRoll;
+                        PlayerClear();
+                    }
                     break;
                 case TurnType.PlayerActionResult:
                     {
