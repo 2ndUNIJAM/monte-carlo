@@ -162,8 +162,10 @@ namespace MonteCarlo.Core
                     }
                 case RevolverGunCommandTurnEnd:
                     {
-                        player.DecreaseHp(revolverToy.revolverAttack());
-                        turn.ApplyResult(TurnStateMachine.DefaultResult);
+                        var result = enemy.Execute(0);
+                        Debug.Log($"공격 결과: {result.IsSuccess}, 데미지: {result.Value}");
+                        player.DecreaseHp(result.Value);
+                        turn.ApplyResult(result);
                         break;
                     }
                 default:

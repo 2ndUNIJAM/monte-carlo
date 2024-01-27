@@ -4,12 +4,8 @@ namespace MonteCarlo.Enemy
 {
     public abstract class EnemyAction
     {
-        protected readonly EnemyAttackData attackData;
-        protected EnemyAction(EnemyAttackData attackData)
-        {
-            this.attackData = attackData;
-        }
+        public abstract float Probability { get; }
 
-        public abstract ActionResult Execute(int id);
+        public abstract ActionResult Execute();
     }
 }

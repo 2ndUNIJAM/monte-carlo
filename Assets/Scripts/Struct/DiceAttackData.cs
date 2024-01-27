@@ -3,8 +3,8 @@ using System;
 namespace MonteCarlo.Struct
 {
     [Serializable]
-    public struct RevolverActionData
+    public struct DiceAttackData
     {
-        public int Damage;
+        public int[] Damage;
     }
 }
