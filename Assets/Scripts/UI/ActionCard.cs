@@ -42,7 +42,7 @@ namespace MonteCarlo.UI
                     {
                         switch (type)
                         {
-                            case CommandType.RevolverGunTurnEnd:
+                            case CommandType.EnemyRevolverAction:
                                 {
                                     if (DelayTimer > 0) return;
                                     DelayTimer = 1.0f;
