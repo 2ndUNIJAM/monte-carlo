@@ -25,23 +25,31 @@ namespace MonteCarlo.UI
             });
 
             cardImage = GetComponent<Image>();
-
-            MainFlowBehaviour mainFlow = MainFlowBehaviour.Instance;
+            var mainFlow = MainFlowBehaviour.Instance;
             switch (type)
             {
                 case CommandType.PlayerAttack:
                     {
-                        changeActionButton(mainFlow.getPlayerAttackDamage(), mainFlow.getPlayerAttackProbability(), 0);
+                        var value = mainFlow.getPlayerAttackDamage();
+                        var probability = mainFlow.getPlayerAttackProbability();
+                        var imageIndex = 0;
+                        changeActionButton(value, probability, imageIndex);
                         break;
                     }
                 case CommandType.PlayerDefence:
                     {
-                        changeActionButton(mainFlow.getPlayerDefenceAmount(), mainFlow.getPlayerAttackProbability(), 2);
+                        var value = mainFlow.getPlayerDefenceAmount();
+                        var probability = mainFlow.getPlayerAttackProbability();
+                        var imageIndex = 2;
+                        changeActionButton(value, probability, imageIndex);
                         break;
                     }
                 case CommandType.PlayerHeal:
                     {
-                        changeActionButton(mainFlow.getPlayerHealAmount(), mainFlow.getPlayerHealProbability(), 4);
+                        var value = mainFlow.getPlayerHealAmount();
+                        var probability = mainFlow.getPlayerHealProbability();
+                        var imageIndex = 4;
+                        changeActionButton(value, probability, imageIndex);
                         break;
                     }
                 case CommandType.RevolverGunTurnEnd:
@@ -49,7 +57,6 @@ namespace MonteCarlo.UI
                 default:
                     break;
             }
-
         }
 
         private void changeActionButton(int value, float probability, int spriteIdx)
