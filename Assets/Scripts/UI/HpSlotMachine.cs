@@ -13,7 +13,6 @@ public class HpSlotMachine : MonoBehaviour
 
     private void Update()
     {
-        
         var Hp = MainFlowBehaviour.Instance.PlayerHp;
         if (DisplayHp != Hp)
         {
@@ -23,29 +22,35 @@ public class HpSlotMachine : MonoBehaviour
 
     private void OnHpChanged(int Hp)
     {
-        Debug.Log(Hp);
         DisplayHp = Hp;
 
         Hp_1 = DisplayHp / 100;
         Hp_2 = DisplayHp % 100 / 10;
         Hp_3 = DisplayHp % 10;
-        Debug.Log("Hp_1: " + Hp_1 + " Hp_2: " + Hp_2 + " Hp_3: " + Hp_3);
 
         answer[0] = Hp_1;
         answer[1] = Hp_2;
         answer[2] = Hp_3;
 
-
-        for (int i = 0; i < Slot.Length; i++)
+        if (Hp <= 0)
         {
-            StartCoroutine(StartSlot(i));
+            for (int i=0; i<Slot.Length; i++)
+            {
+                StartCoroutine(ZeroSlot(i));
+            }
         }
+        else
+        {
+            for (int i = 0; i < Slot.Length; i++)
+            {
+                StartCoroutine(StartSlot(i));
+            }
+        }
+        
     }
 
     private IEnumerator StartSlot(int SlotIndex)
     {
-        Debug.Log(SlotSkillObject[SlotIndex].transform.localPosition);
-
         var repeatCount = (Slot.Length * 2 + Slot.Length - answer[SlotIndex] + 1 + SlotIndex * 10 ) * 2;
         for (int i=0; i<100; i++)
         {
@@ -65,6 +70,25 @@ public class HpSlotMachine : MonoBehaviour
             if (SlotSkillObject[SlotIndex].transform.localPosition.y < 0f)
             {
                 SlotSkillObject[SlotIndex].transform.localPosition += new Vector3(0, 1000f, 0);
+            }
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+
+    private IEnumerator ZeroSlot(int SlotIndex)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            SlotSkillObject[SlotIndex].transform.localPosition -= new Vector3(0, 50f, 0);
+            if (SlotSkillObject[SlotIndex].transform.localPosition.y < 0f)
+            {
+                SlotSkillObject[SlotIndex].transform.localPosition += new Vector3(0, 1000f, 0);
+                for (int j=0; j<19; j++)
+                {
+                    SlotSkillObject[SlotIndex].transform.localPosition -= new Vector3(0, 50f, 0);
+                    yield return new WaitForSeconds(0.02f);
+                }
+                break;
             }
             yield return new WaitForSeconds(0.02f);
         }

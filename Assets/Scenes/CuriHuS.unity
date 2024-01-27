@@ -1772,7 +1772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 747915165}
-  type: 5
+  type: 0
   valueText: {fileID: 0}
   probabilityText: {fileID: 0}
   cardResourceImage: []

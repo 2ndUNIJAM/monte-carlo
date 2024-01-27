@@ -4,7 +4,7 @@ namespace MonteCarlo.Core
 {
     public class TurnStateMachine
     {
-        public TurnType Turn { get; private set; } = TurnType.Enemy;
+        public TurnType Turn { get; private set; } = TurnType.Player;
 
         public void NextTurn()
         {
