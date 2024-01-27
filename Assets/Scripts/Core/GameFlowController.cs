@@ -19,7 +19,7 @@ namespace MonteCarlo.Core
             // 마지막씬이 끝난거면 프로그램 종료.
             if (SceneNames.Count <= idx)
             {
-                Application.Quit();
+                SceneManager.LoadScene("Title", LoadSceneMode.Single);
             }
 
             var sceneName = SceneNames[idx];

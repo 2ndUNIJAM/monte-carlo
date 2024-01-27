@@ -165,6 +165,7 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case PlayerCommandResultEnd:
+                    GameEndCheck();
                     turn.NextTurn();
                     break;
                 default:
@@ -225,6 +226,7 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case EnemyCommandResultEnd:
+                    GameEndCheck();
                     turn.NextTurn();
                     break;
                 default:
@@ -236,6 +238,19 @@ namespace MonteCarlo.Core
         public void AddCommand(ICommand cmd)
         {
             commands.Add(cmd);
+        }
+
+        private void GameEndCheck()
+        {
+            if (player.Hp <= 0)
+            {
+                BattleEndHelper.Defeat();
+            }
+
+            else if (enemy.Hp <= 0)
+            {
+                BattleEndHelper.Win(this.gameObject.scene);
+            }
         }
     }
 }
