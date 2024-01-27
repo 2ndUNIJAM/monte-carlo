@@ -1,3 +1,4 @@
+using MonteCarlo.Struct;
 using UnityEngine;
 
 namespace MonteCarlo.Data
@@ -6,6 +7,8 @@ namespace MonteCarlo.Data
     public class PlayerDataModel : ScriptableObject
     {
         public int PlayerMaxHP;
+
+        public AttackData Attack;
 
         public int PlayerChanceNumerator;
         const int PlayerChanceDenominator = 1000;

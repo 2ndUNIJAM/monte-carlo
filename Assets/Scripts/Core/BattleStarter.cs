@@ -11,8 +11,6 @@ namespace MonteCarlo.Core
 
         void Start()
         {
-            DontDestroyOnLoad(dataHolder);
-
             button.onClick.AddListener(() =>
             {
                 LoadBattle();
