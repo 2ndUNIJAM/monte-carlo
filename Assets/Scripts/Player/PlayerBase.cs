@@ -1,46 +1,51 @@
+using MonteCarlo.Data;
+using MonteCarlo.Struct;
+
 namespace MonteCarlo.Player
 {
     public class PlayerBase
     {
-        public readonly int maxHp;
-        public int hp;
-        public int damage;
-        public int defence;
+        public int MaxHp { get; }
+        public int Hp { get; private set; }
+        public AttackData AttackInfo;
+        public int Defence { get; private set; }
         public int heal;
-        public float HpRatio => (float)hp / maxHp;
+        public float HpRatio => (float)Hp / MaxHp;
 
-        public PlayerBase(int maxHp)
+        public PlayerBase(PlayerDataModel data)
         {
-            this.maxHp = maxHp;
-            this.hp = maxHp;
+            MaxHp = data.PlayerMaxHP;
+            Hp = data.PlayerMaxHP;
+
+            AttackInfo = data.Attack;
         }
 
-        public void decreaseHp(int value)
+        public void DecreaseHp(int value)
         {
-            if (defence > 0)
+            if (Defence > 0)
             {
-                if (defence >= value) // 방어도가 받는 데미지보다 많을 때
+                if (Defence >= value) // 방어도가 받는 데미지보다 많을 때
                 {
-                    defence -= value;
+                    Defence -= value;
                     value = 0;
                 }
                 else // 방어도와 체력 모두 깎여야 할 때
                 {
-                    value -= defence;
-                    defence = 0;
+                    value -= Defence;
+                    Defence = 0;
                 }
             }
-            hp -= value;
+            Hp -= value;
         }
 
         public void addDefence(int value)
         {
-            defence += value;
+            Defence += value;
         }
 
         public void healHP()
         {
-            hp += heal;
+            Hp += heal;
         }
 
     }
