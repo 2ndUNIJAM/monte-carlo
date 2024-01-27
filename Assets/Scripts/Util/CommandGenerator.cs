@@ -1,6 +1,6 @@
 using System;
 using MonteCarlo.Data;
-using MonteCarlo.Struct;
+using MonteCarlo.Struct.Command;
 using UnityEngine;
 
 namespace MonteCarlo.Util
