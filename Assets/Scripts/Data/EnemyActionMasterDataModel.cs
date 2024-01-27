@@ -12,5 +12,8 @@ namespace MonteCarlo.Data
         [Header("Dice")]
         public DiceAttackData DiceAttack;
         public DiceHealData DiceHeal;
+
+        [Header("Box")]
+        public BoxActionData Box;
     }
 }
