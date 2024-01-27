@@ -4,7 +4,7 @@ namespace MonteCarlo.Core
 {
     public class BattleDataHolder : SingletonBehaviour<BattleDataHolder>
     {
-        public PlayerDataModel Player;
+        public PlayerMasterDataModel Player;
 
         private void Awake()
         {
