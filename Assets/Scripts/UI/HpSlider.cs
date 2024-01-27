@@ -15,11 +15,11 @@ namespace MonteCarlo.UI
         {
             if (character is CharacterType.Player)
             {
-                HpValue = MainFlowBehaviour.Instance.getPlayerHpRatio();
+                HpValue = MainFlowBehaviour.Instance.PlayerHpRatio;
             }
             else if (character is CharacterType.Enemy)
             {
-                HpValue = MainFlowBehaviour.Instance.getEnemyHpRatio();
+                HpValue = MainFlowBehaviour.Instance.EnemyHpRatio;
             }
             HpBarValue.value = HpValue;
         }

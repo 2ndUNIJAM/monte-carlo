@@ -9,34 +9,23 @@ namespace MonteCarlo.Core
 {
     public class MainFlowBehaviour : SingletonBehaviour<MainFlowBehaviour>
     {
+        public TurnType Turn => turn.Turn;
+        public float PlayerHpRatio => player.HpRatio;
+        public float EnemyHpRatio => enemy.HpRatio;
 
         private TurnStateMachine turn;
         private PlayerBase player;
         private EnemyBase enemy;
-        private readonly List<ICommand> commands = new();
-
         private RevolverToy revolverToy;
+
+        private readonly List<ICommand> commands = new();
 
         void Awake()
         {
             turn = new TurnStateMachine();
-            player = new PlayerBase(BattleDataHolder.Instance.player?.playerHP ?? 100);
+            player = new PlayerBase(BattleDataHolder.Instance.Player?.PlayerMaxHP ?? 100);
             enemy = new EnemyBase(100);
             revolverToy = new RevolverToy();
-        }
-        public TurnType getTurn()
-        {
-            return turn.Turn;
-        }
-
-        public float getPlayerHpRatio()
-        {
-            return player.getHpRatio();
-        }
-
-        public float getEnemyHpRatio()
-        {
-            return enemy.getHpRatio();
         }
 
         void Update()
