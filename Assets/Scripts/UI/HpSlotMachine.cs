@@ -24,7 +24,7 @@ public class HpSlotMachine : MonoBehaviour
     public int[] answer = { 0, 0, 0 };
 
     // Start is called before the first frame update
-    void Start ( )
+    void Start()
     {
         if (Hp >= 100) // 세 자리 자연수일 때는 
         {
