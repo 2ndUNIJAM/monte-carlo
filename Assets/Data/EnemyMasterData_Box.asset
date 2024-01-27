@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 655c5ffa417515345ab4eb73c1c5bd5e, type: 3}
-  m_Name: EnemyMasterData_Dice
+  m_Name: EnemyMasterData_Box
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 2
   MaxHP: 100
-  actionTypes: 0100000002000000
+  actionTypes: 03000000040000000500000006000000

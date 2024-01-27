@@ -4,5 +4,6 @@ namespace MonteCarlo.Data
     {
         Revolver,
         Dice,
+        Box,
     }
 }

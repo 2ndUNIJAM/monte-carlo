@@ -207,7 +207,10 @@ namespace MonteCarlo.Core
                     if (result.IsSuccess)
                     {
                         if (result.Result is ResultType.GetDamage)
+                        {
                             player.DecreaseHp(result.Value);
+                            SoundManager.Instance.onRevolverShotClip();
+                        }
                         if (result.Result is ResultType.GetHeal)
                             enemy.IncreateHp(result.Value);
                     }

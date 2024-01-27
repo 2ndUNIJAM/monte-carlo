@@ -5,5 +5,9 @@ namespace MonteCarlo.Data
         Revolver,
         DiceAttack,
         DiceHeal,
+        Box1,
+        Box2,
+        Box3,
+        Box4,
     }
 }
