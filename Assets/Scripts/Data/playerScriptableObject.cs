@@ -8,14 +8,6 @@ public class playerScriptableObject : ScriptableObject
     public int PlayerChanceNumerator;
     const int PlayerChanceDenominator = 1000;
 
-    public enum ActionType
-    {
-        Attack,
-        Defense,
-        Heal,
-        None,
-    }
-
     public int PlayerMoney;
 
 
