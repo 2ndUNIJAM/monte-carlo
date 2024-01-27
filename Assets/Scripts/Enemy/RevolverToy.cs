@@ -22,7 +22,10 @@ namespace MonteCarlo.Enemy
         {
             var isFire = Random.Range(0f, 1f) < Probability;
             if (isFire)
+            {
                 misfireCnt = 0;
+                SoundManager.Instance.onRevolverShotClip();
+            }
             else
                 misfireCnt++;
 

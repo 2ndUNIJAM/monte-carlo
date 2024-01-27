@@ -26,7 +26,9 @@ namespace MonteCarlo.Core
             {
                 case TurnType.PlayerRandomRoll:
                     if (PlayerResult.IsSuccess)
+                    {
                         Turn = TurnType.PlayerActionResult;
+                    }
                     else
                     {
                         Turn = TurnType.EnemyRandomRoll;
@@ -37,11 +39,15 @@ namespace MonteCarlo.Core
                     {
                         Turn = TurnType.EnemyRandomRoll;
                         PlayerClear();
+
+
                     }
                     break;
                 case TurnType.EnemyRandomRoll:
                     if (EnemyResult.IsSuccess)
+                    {
                         Turn = TurnType.EnemyActionResult;
+                    }
                     else
                     {
                         Turn = TurnType.Enemy;

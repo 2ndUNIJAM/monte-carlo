@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace MonteCarlo.Core
@@ -13,6 +14,11 @@ namespace MonteCarlo.Core
         private AudioClip card001Clip;
         private AudioClip card002Clip;
 
+        private AudioClip damageClip;
+
+        private AudioClip coinFlipClip;
+        private AudioClip coinDropClip;
+
         void Start()
         {
             audioSource = GetComponent<AudioSource>();
@@ -25,6 +31,13 @@ namespace MonteCarlo.Core
             var cardPath = "Sound/Card/";
             card001Clip = Resources.Load<AudioClip>(cardPath + "cardPlace3");
             card002Clip = Resources.Load<AudioClip>(cardPath + "cardPlace4");
+
+            var damagePath = "Sound/Damage/";
+            damageClip = Resources.Load<AudioClip>(damagePath + "hit20.mp3");
+
+            var coinPath = "Sound/Coin/";
+            coinFlipClip = Resources.Load<AudioClip>(coinPath + "coin-flip-shimmer-85750");
+            coinDropClip = Resources.Load<AudioClip>(coinPath + "single-coin-170397");
         }
 
         public void onRevolverRifleClip()
@@ -40,23 +53,41 @@ namespace MonteCarlo.Core
         public void onRevolverShotClip()
         {
             Debug.Log("sound-shot");
-            OnAudio(revolverShotClip);
+            StartCoroutine(OnAudioCoroutine(new AudioClip[] { damageClip, revolverShotClip  }, 0.0f));
         }
+
         public void onCardClip()
         {
             Debug.Log("sound-card");
             var clip = Random.Range(0f, 1f) < 0.5f ? card001Clip : card002Clip;
             OnAudio(clip);
         }
+        public void onDamageClip()
+        {
+            Debug.Log("sound-damage");
+            OnAudio(damageClip);
+        }
+
+        public void onCoinClip()
+        {
+            Debug.Log("sound-coin");
+            StartCoroutine(OnAudioCoroutine(new AudioClip[] { coinFlipClip, coinDropClip }, 1.4f));
+        }
 
         private void OnAudio(AudioClip audioClip)
         {
-            //if (SoundStaticData._dataInstance.isSound)
-            //{
-            audioSource.clip = audioClip;
-            //audioSource.volume = SoundStaticData._dataInstance.soundVolume;
-            audioSource.Play();
-            //}
+            audioSource.PlayOneShot(audioClip);
         }
+
+        private IEnumerator OnAudioCoroutine(AudioClip[] audioClip, float delaytime)
+        {
+            foreach (var audio in audioClip)
+            {
+                audioSource.PlayOneShot(audio);
+                yield return new WaitForSeconds(delaytime);
+            }
+
+        }
+
     }
 }

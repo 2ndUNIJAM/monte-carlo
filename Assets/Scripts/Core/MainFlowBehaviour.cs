@@ -34,6 +34,8 @@ namespace MonteCarlo.Core
 
         void Update()
         {
+            var previousTurn= turn.Turn;
+            
             foreach (var cmd in commands)
             {
                 switch (turn.Turn)
@@ -49,19 +51,34 @@ namespace MonteCarlo.Core
                         break;
                     case TurnType.Enemy:
                         EnemyTurn(cmd);
-
                         break;
                     case TurnType.EnemyRandomRoll:
                         EnemyRandomRoll(cmd);
-
                         break;
                     case TurnType.EnemyActionResult:
                         EnemyActionResult(cmd);
-
                         break;
                 }
             }
             commands.Clear();
+            if (turn.Turn != previousTurn) {
+                switch (turn.Turn)
+                {
+                    case TurnType.Player:
+                        break;
+                    case TurnType.PlayerRandomRoll:
+                        break;
+                    case TurnType.PlayerActionResult:
+                        break;
+                    case TurnType.Enemy:
+                        SoundManager.Instance.onCardClip();
+                        break;
+                    case TurnType.EnemyRandomRoll:
+                        break;
+                    case TurnType.EnemyActionResult:
+                        break;
+                }
+            }
         }
 
         public int getPlayerAttackDamage()
@@ -93,6 +110,7 @@ namespace MonteCarlo.Core
 
         private void PlayerTurn(ICommand command)
         {
+            SoundManager.Instance.onCardClip();
             switch (command)
             {
                 case PlayerCommandTurnEnd:
@@ -104,6 +122,8 @@ namespace MonteCarlo.Core
                         Debug.Log($"공격 결과: {result.IsSuccess}, 데미지: {result.Value}");
                         enemy.DecreaseHp(result.Value);
                         turn.ApplyResult(result);
+                        SoundManager.Instance.onCoinClip();
+                        
                         break;
                     }
                 case PlayerCommandDefence:
