@@ -57,6 +57,15 @@ namespace MonteCarlo.Core
             commands.Clear();
         }
 
+        public int getPlayerAttackDamage()
+        {
+            return player.AttackInfo.Damage;
+        }
+        public float getPlayerAttackProbability()
+        {
+            return player.AttackInfo.Probability;
+        }
+
         private void PlayerTurn(ICommand command)
         {
             switch (command)
