@@ -20,7 +20,6 @@ namespace MonteCarlo.Core
         private TurnStateMachine turn;
         private PlayerBase player;
         private EnemyBase enemy;
-        private RevolverToy revolverToy;
 
         private readonly List<ICommand> commands = new();
 
@@ -29,7 +28,6 @@ namespace MonteCarlo.Core
             turn = new TurnStateMachine();
             player = new PlayerBase(BattleDataHolder.Instance.Player);
             enemy = new EnemyBase(BattleDataHolder.Instance.Enemy);
-            revolverToy = new RevolverToy();
         }
 
         void Update()
