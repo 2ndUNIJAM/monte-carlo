@@ -105,12 +105,12 @@ namespace MonteCarlo.Core
                         break;
                     }
                 case PlayerCommandDefence:
-                    player.addDefence(5);
+                    player.AddDefence(5);
                     Debug.Log("방어도 획득");
 
                     break;
                 case PlayerCommandHeal:
-                    player.healHP();
+                    player.HealHP();
                     Debug.Log(player.Hp + "만큼 힐 성공");
                     break;
                 default:

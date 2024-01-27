@@ -44,12 +44,12 @@ namespace MonteCarlo.Player
             Hp -= value;
         }
 
-        public void addDefence(int value)
+        public void AddDefence(int value)
         {
             Defence += value;
         }
 
-        public void healHP()
+        public void HealHP()
         {
             Hp += data.Heal.HealAmount;
         }
