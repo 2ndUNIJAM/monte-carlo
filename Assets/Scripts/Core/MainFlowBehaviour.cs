@@ -163,6 +163,7 @@ namespace MonteCarlo.Core
                 case RevolverGunCommandTurnEnd:
                     {
                         player.DecreaseHp(revolverToy.revolverAttack());
+                        turn.ApplyResult(TurnStateMachine.DefaultResult);
                         break;
                     }
                 default:

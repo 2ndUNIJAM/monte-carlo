@@ -12,6 +12,7 @@ public class TurnAi : MonoBehaviour
             DelayTimer -= Time.deltaTime;
             if (DelayTimer > 0) return;
             DelayTimer = 1.0f;
+
             var cmd = CommandGenerator.Generate(CommandType.EnemyTurnEnd);
             MainFlowBehaviour.Instance.AddCommand(cmd);
         }

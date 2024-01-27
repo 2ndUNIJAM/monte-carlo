@@ -24,7 +24,7 @@ namespace MonteCarlo.Enemy
         }
         private int attack()
         {
-            return 50;
+            return 10;
         }
 
         public int revolverAttack()

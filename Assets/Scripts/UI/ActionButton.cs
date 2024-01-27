@@ -54,8 +54,6 @@ namespace MonteCarlo.UI
                         changeActionButton(value, probability, imageIndex);
                         break;
                     }
-                case CommandType.RevolverGunTurnEnd:
-                    break;
                 default:
                     break;
             }
