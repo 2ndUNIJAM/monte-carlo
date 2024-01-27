@@ -1,15 +1,19 @@
+using MonteCarlo.Data;
+
 namespace MonteCarlo.Enemy
 {
     public class EnemyBase
     {
-        public int MaxHp { get; }
+        public int MaxHp => data.MaxHP;
+
         public int Hp { get; private set; }
         public float HpRatio => (float)Hp / MaxHp;
 
-        public EnemyBase(int maxHp)
+        private readonly EnemyMasterDataModel data;
+
+        public EnemyBase(EnemyMasterDataModel data)
         {
-            MaxHp = maxHp;
-            Hp = maxHp;
+            Hp = data.MaxHP;
         }
 
         public void DecreaseHp(int value)

@@ -24,7 +24,7 @@ namespace MonteCarlo.Core
         {
             turn = new TurnStateMachine();
             player = new PlayerBase(BattleDataHolder.Instance.Player);
-            enemy = new EnemyBase(100);
+            enemy = new EnemyBase(BattleDataHolder.Instance.Enemy);
             revolverToy = new RevolverToy();
         }
 
