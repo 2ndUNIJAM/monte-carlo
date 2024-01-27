@@ -5,6 +5,6 @@ namespace MonteCarlo.Struct
     [Serializable]
     public struct DiceAttackData
     {
-        public int[] Damage;
+        public int[] Damages;
     }
 }
