@@ -106,6 +106,7 @@ namespace MonteCarlo.Core
                 case PlayerCommandDefence:
                     player.addDefence(5);
                     Debug.Log("방어도 획득");
+
                     break;
                 case PlayerCommandHeal:
                     player.healHP();
@@ -150,12 +151,19 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case EnemyCommandTurnEnd:
-                    turn.ApplyResult(false, 0);
-                    break;
+                    {
+                        turn.ApplyResult(false, 0);
+
+                        break;
+                    }
                 case RevolverGunCommandTurnEnd:
-                    if (turn.Turn is TurnType.Enemy)
-                        player.DecreaseHp(revolverToy.revolverAttack());
-                    break;
+                    {
+                        if (turn.Turn is TurnType.Enemy)
+                        {
+                            player.DecreaseHp(revolverToy.revolverAttack());
+                        }
+                        break;
+                    }
                 default:
                     Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;

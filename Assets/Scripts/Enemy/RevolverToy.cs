@@ -21,12 +21,10 @@ namespace MonteCarlo.Enemy
         private int avoid()
         {
             return 0;
-            //Debug.Log("틱");
         }
         private int attack()
         {
             return 50;
-            //Debug.Log("빵");
         }
 
         public int revolverAttack()
