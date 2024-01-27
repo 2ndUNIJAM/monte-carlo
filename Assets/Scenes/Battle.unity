@@ -3693,7 +3693,7 @@ MonoBehaviour:
   - {fileID: 1349609875}
   - {fileID: 1613120133}
   - {fileID: 447125023}
-  characterType: 0
+  characterType: 1
 --- !u!1 &819657383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7065359341685994670, guid: 216ec3a8f7b6e1340b9a00219efd5ee1, type: 3}
@@ -8312,7 +8312,7 @@ MonoBehaviour:
   - {fileID: 2012667723}
   - {fileID: 1276801080}
   - {fileID: 1993619916}
-  characterType: 1
+  characterType: 2
 --- !u!1 &2043948290
 GameObject:
   m_ObjectHideFlags: 0
