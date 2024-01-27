@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using MonteCarlo.Core;
+using MonteCarlo.Data;
 
 public class HpSlotMachine : MonoBehaviour
 {
     [SerializeField] private GameObject[] SlotSkillObject;
     [SerializeField] private GameObject[] Slot;
+    [SerializeField] private CharacterType characterType;
 
     private int DisplayHp = 123;
     private int Hp_1, Hp_2, Hp_3;
@@ -13,7 +15,17 @@ public class HpSlotMachine : MonoBehaviour
 
     private void Update()
     {
-        var Hp = MainFlowBehaviour.Instance.PlayerHp;
+        int Hp;
+
+        if (characterType == CharacterType.Enemy)
+        {
+            Hp = MainFlowBehaviour.Instance.EnemyHp;
+        }
+        else
+        {
+            Hp = MainFlowBehaviour.Instance.PlayerHp;
+        }
+
         if (DisplayHp != Hp)
         {
             OnHpChanged(Hp);

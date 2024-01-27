@@ -722,6 +722,7 @@ MonoBehaviour:
   - {fileID: 1430466813}
   - {fileID: 1407031215}
   - {fileID: 801123384}
+  characterType: 0
 --- !u!1 &198253515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1510,7 @@ MonoBehaviour:
   - {fileID: 1423007048}
   - {fileID: 278246776}
   - {fileID: 7103771}
+  characterType: 0
 --- !u!1 &364684726
 GameObject:
   m_ObjectHideFlags: 0
