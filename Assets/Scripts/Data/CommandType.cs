@@ -4,5 +4,8 @@ namespace MonteCarlo.Data
     {
         PlayerTurnEnd,
         EnemyTurnEnd,
+        PlayerAttack,
+        PlayerDefence,
+        PlayerHeal,
     }
 }

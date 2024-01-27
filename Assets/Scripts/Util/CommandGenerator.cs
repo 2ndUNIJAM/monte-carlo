@@ -15,6 +15,12 @@ namespace MonteCarlo.Util
                     return new PlayerCommandTurnEnd();
                 case CommandType.EnemyTurnEnd:
                     return new EnemyCommandTurnEnd();
+                case CommandType.PlayerAttack:
+                    return new PlayerCommandAttack();
+                case CommandType.PlayerDefence:
+                    return new PlayerCommandDefence();
+                case CommandType.PlayerHeal:
+                    return new PlayerCommandHeal();
             }
 
             Debug.Log($"Not Implemented Command {type}");

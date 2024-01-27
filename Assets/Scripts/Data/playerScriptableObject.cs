@@ -4,8 +4,17 @@ using UnityEngine;
 public class playerScriptableObject : ScriptableObject
 {
     public int playerHP;
-    public bool playerAttack;
 
-    public int numberOfPrefabsToCreate;
-    public Vector3[] spawnPoints;
+    public int PlayerChanceNumerator;
+    const int PlayerChanceDenominator = 1000;
+
+    public int PlayerMoney;
+
+
+    // 통계
+    public int PlayerCoinSuccess;
+    public int PlayerCoinFail;
+
+    public int[] PlayerActionCount = { 0, 0, 0, 0 };
+
 }
