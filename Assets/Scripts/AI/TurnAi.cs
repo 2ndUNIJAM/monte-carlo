@@ -7,16 +7,13 @@ public class TurnAi : MonoBehaviour
     private float DelayTimer = 1.0f; // 임시
     private void Update()
     {
-        DelayTimer -= Time.deltaTime;
-        if (DelayTimer > 0) return;
-        DelayTimer = 1.0f;
-
-        switch (MainFlowBehaviour.Instance.Turn)
+        if (MainFlowBehaviour.Instance.Turn is TurnType.Enemy)
         {
-            case TurnType.Enemy:
-                var cmd = CommandGenerator.Generate(CommandType.EnemyTurnEnd);
-                MainFlowBehaviour.Instance.AddCommand(cmd);
-                break;
+            DelayTimer -= Time.deltaTime;
+            if (DelayTimer > 0) return;
+            DelayTimer = 1.0f;
+            var cmd = CommandGenerator.Generate(CommandType.EnemyTurnEnd);
+            MainFlowBehaviour.Instance.AddCommand(cmd);
         }
     }
 }
