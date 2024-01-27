@@ -1080,17 +1080,6 @@ MonoBehaviour:
   - {fileID: 1423007048}
   - {fileID: 278246776}
   - {fileID: 7103771}
-  Slot1: []
-  Slot2: []
-  Slot3: []
-  StartList: 
-  ResultIndexList: 
-  ItemCnt: 3
-  Hp: 80
-  Hp_1: 0
-  Hp_2: 0
-  Hp_3: 0
-  answer: 000000000000000000000000
 --- !u!1001 &433768046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1783,7 +1772,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 747915165}
-  type: 0
+  type: 5
+  valueText: {fileID: 0}
+  probabilityText: {fileID: 0}
+  cardResourceImage: []
 --- !u!114 &747915165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3241,6 +3233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1268325977}
   type: 1
+  valueText: {fileID: 0}
+  probabilityText: {fileID: 0}
+  cardResourceImage: []
 --- !u!114 &1268325977
 MonoBehaviour:
   m_ObjectHideFlags: 0
