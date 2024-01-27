@@ -94,10 +94,10 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 case PlayerCommandAttack:
-                    var (isSucceed, Damage) = player.AttackAction();
+                    var (isSucceed, damage) = player.AttackAction();
                     Debug.Log("공격 성공?" + isSucceed);
-                    Debug.Log(Damage + " 로 공격 성공");
-                    //enemy.DecreaseHp(player.AttackAction().Damage);
+                    Debug.Log(damage + " 로 공격 성공");
+                    enemy.DecreaseHp(damage);
                     break;
                 case PlayerCommandDefence:
                     player.addDefence(5);

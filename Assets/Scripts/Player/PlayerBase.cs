@@ -13,8 +13,6 @@ namespace MonteCarlo.Player
 
         public int Hp { get; private set; }
         public float HpRatio => (float)Hp / MaxHp;
-        public int Damage { get; private set; }
-        public float attackProbability { get; private set; }
         public int Defence { get; private set; }
         public int Heal { get; private set; }
 
@@ -24,8 +22,6 @@ namespace MonteCarlo.Player
         {
             this.data = data;
             Hp = data.MaxHP;
-            Damage = data.Attack.Damage;
-            attackProbability = data.Attack.Probability;
             Defence = data.Defence.DefenceAmount;
             Heal = data.Heal.HealAmount;
         }
@@ -58,11 +54,12 @@ namespace MonteCarlo.Player
             Hp += data.Heal.HealAmount;
         }
 
-        public (bool isSucceed, float Damage) AttackAction()
+        public (bool isSucceed, int damage) AttackAction()
         {
-            // 성공 여부
-            bool isSucceed = Random.Range(0f, 1f) < attackProbability;
-            return (isSucceed, Damage);
+            var attackData = data.Attack;
+            bool isSucceed = Random.Range(0f, 1f) < attackData.Probability;
+            int damage = isSucceed ? attackData.Damage : 0;
+            return (isSucceed, damage);
         }
     }
 }
