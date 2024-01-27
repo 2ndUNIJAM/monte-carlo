@@ -43,37 +43,124 @@ namespace MonteCarlo.Core
         {
             foreach (var cmd in commands)
             {
-                switch (cmd)
+                switch (turn.Turn)
                 {
-                    case PlayerCommandTurnEnd:
-                        if (turn.Turn is Data.TurnType.Player)
-                            turn.ChangeTurn();
+                    case TurnType.Player:
+                        PlayerTurn(cmd);
                         break;
-                    case EnemyCommandTurnEnd:
-                        if (turn.Turn is Data.TurnType.Enemy)
-                            turn.ChangeTurn();
+                    case TurnType.PlayerRandomRoll:
+                        PlayerRandomRoll(cmd);
                         break;
-                    case RevolverGunCommandTurnEnd:
-                        if (turn.Turn is Data.TurnType.Enemy)
-                            player.decreaseHp(revolverToy.revolverAttack());
+                    case TurnType.PlayerActionResult:
+                        PlayerActionResult(cmd);
                         break;
-                    case PlayerCommandAttack:
-                        Debug.Log(player.damage +" 로 공격 성공");
+                    case TurnType.Enemy:
+                        EnemyTurn(cmd);
                         break;
-                    case PlayerCommandDefence:
-                        player.addDefence(5);
-                        Debug.Log("방어도 획득");
+                    case TurnType.EnemyRandomRoll:
+                        EnemyRandomRoll(cmd);
                         break;
-                    case PlayerCommandHeal:
-                        player.healHP();
-                        Debug.Log(player.hp + "만큼 힐 성공");
-                        break;
-                    default:
-                        Debug.Log($"Not implemented {cmd}");
+                    case TurnType.EnemyActionResult:
+                        EnemyActionResult(cmd);
                         break;
                 }
             }
             commands.Clear();
+        }
+
+        private void PlayerTurn(ICommand command)
+        {
+            switch (command)
+            {
+                case PlayerCommandTurnEnd:
+                    turn.NextTurn();
+                    break;
+                case PlayerCommandAttack:
+                    Debug.Log(player.damage + " 로 공격 성공");
+                    break;
+                case PlayerCommandDefence:
+                    player.addDefence(5);
+                    Debug.Log("방어도 획득");
+                    break;
+                case PlayerCommandHeal:
+                    player.healHP();
+                    Debug.Log(player.hp + "만큼 힐 성공");
+                    break;
+                default:
+                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    break;
+            }
+        }
+
+        private void PlayerRandomRoll(ICommand command)
+        {
+            switch (command)
+            {
+                case PlayerCommandRollEnd:
+                    turn.NextTurn();
+                    break;
+                default:
+                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    break;
+            }
+
+        }
+
+        private void PlayerActionResult(ICommand command)
+        {
+            switch (command)
+            {
+                case PlayerCommandResultEnd:
+                    turn.NextTurn();
+                    break;
+                default:
+                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    break;
+            }
+
+        }
+
+        private void EnemyTurn(ICommand command)
+        {
+            switch (command)
+            {
+                case EnemyCommandTurnEnd:
+                    turn.NextTurn();
+                    break;
+                case RevolverGunCommandTurnEnd:
+                    if (turn.Turn is Data.TurnType.Enemy)
+                        player.decreaseHp(revolverToy.revolverAttack());
+                    break;
+                default:
+                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    break;
+            }
+        }
+
+        private void EnemyRandomRoll(ICommand command)
+        {
+            switch (command)
+            {
+                case EnemyCommandRollEnd:
+                    turn.NextTurn();
+                    break;
+                default:
+                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    break;
+            }
+        }
+
+        private void EnemyActionResult(ICommand command)
+        {
+            switch (command)
+            {
+                case EnemyCommandResultEnd:
+                    turn.NextTurn();
+                    break;
+                default:
+                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    break;
+            }
         }
 
         public void AddCommand(ICommand cmd)
