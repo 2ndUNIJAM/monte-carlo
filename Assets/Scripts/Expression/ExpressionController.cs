@@ -16,6 +16,14 @@ namespace MonteCarlo.Expression
         {
             var turn = MainFlowBehaviour.Instance.Turn;
 
+            if (turn is TurnType.Player || turn is TurnType.Enemy)
+            {
+                playerRoll.SetActive(false);
+                playerResult.SetActive(false);
+                enemyRoll.SetActive(false);
+                enemyResult.SetActive(false);
+            }
+
             if (turn is TurnType.PlayerRandomRoll)
             {
                 playerRoll.SetActive(true);

@@ -91,14 +91,17 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case PlayerCommandTurnEnd:
-                    turn.NextTurn();
+                    turn.ApplyResult(false, 0);
                     break;
                 case PlayerCommandAttack:
-                    var (isSucceed, damage) = player.AttackAction();
-                    Debug.Log("공격 성공?" + isSucceed);
-                    Debug.Log(damage + " 로 공격 성공");
-                    enemy.DecreaseHp(damage);
-                    break;
+                    {
+                        var (isSucceed, damage) = player.AttackAction();
+                        Debug.Log("공격 성공?" + isSucceed);
+                        Debug.Log(damage + " 로 공격 성공");
+                        enemy.DecreaseHp(damage);
+                        turn.ApplyResult(isSucceed, damage);
+                        break;
+                    }
                 case PlayerCommandDefence:
                     player.addDefence(5);
                     Debug.Log("방어도 획득");
@@ -108,7 +111,7 @@ namespace MonteCarlo.Core
                     Debug.Log(player.Hp + "만큼 힐 성공");
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
@@ -121,7 +124,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
 
@@ -135,7 +138,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
 
@@ -146,14 +149,14 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case EnemyCommandTurnEnd:
-                    turn.NextTurn();
+                    turn.ApplyResult(false, 0);
                     break;
                 case RevolverGunCommandTurnEnd:
-                    if (turn.Turn is Data.TurnType.Enemy)
+                    if (turn.Turn is TurnType.Enemy)
                         player.DecreaseHp(revolverToy.revolverAttack());
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
@@ -166,7 +169,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
@@ -179,7 +182,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
