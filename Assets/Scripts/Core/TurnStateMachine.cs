@@ -11,7 +11,6 @@ namespace MonteCarlo.Core
         public ActionResult PlayerResult { get; private set; }
         public ActionResult EnemyResult { get; private set; }
 
-
         public static readonly ActionResult DefaultResult = new()
         {
             IsSuccess = false,
@@ -25,22 +24,12 @@ namespace MonteCarlo.Core
             switch (Turn)
             {
                 case TurnType.PlayerRandomRoll:
-                    if (PlayerResult.IsSuccess)
-                    {
-                        Turn = TurnType.PlayerActionResult;
-                    }
-                    else
-                    {
-                        Turn = TurnType.EnemyRandomRoll;
-                        PlayerClear();
-                    }
+                    Turn = TurnType.PlayerActionResult;
                     break;
                 case TurnType.PlayerActionResult:
                     {
                         Turn = TurnType.EnemyRandomRoll;
                         PlayerClear();
-
-
                     }
                     break;
                 case TurnType.EnemyRandomRoll:
