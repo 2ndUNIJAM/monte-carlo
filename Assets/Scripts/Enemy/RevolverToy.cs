@@ -1,47 +1,38 @@
+using MonteCarlo.Data;
+using MonteCarlo.Struct;
 using UnityEngine;
 
 namespace MonteCarlo.Enemy
 {
-    public class RevolverToy
+    public class RevolverToy : EnemyAction
     {
-        private readonly int maxProbability = 6;
-        // 1/6 -> 1/5 -> ...
-        public int attackProbability;
+        public override float Probability => 1 / (float)leftCylinder;
 
-        public RevolverToy()
+        private readonly RevolverActionData data;
+        private int misfireCnt;
+        private int leftCylinder => data.cylinderCnt - misfireCnt;
+
+        public RevolverToy(RevolverActionData data)
         {
-            this.attackProbability = this.maxProbability;
+            this.data = data;
         }
 
-        public float getProbability()
+        public override ActionResult Execute()
         {
-            return 1 / (float)attackProbability;
-        }
-
-        private int avoid()
-        {
-            return 0;
-        }
-        private int attack()
-        {
-            return 10;
-        }
-
-        public int revolverAttack()
-        {
-            int attackValue;
-            // 랜덤 확률로 공격 여부 결정
-            if (Random.Range(0f, 1f) < getProbability())
-            {
-                attackValue = attack();
-                attackProbability = 6;
-            }
+            var isFire = Random.Range(0f, 1f) < Probability;
+            if (isFire)
+                misfireCnt = 0;
             else
+                misfireCnt++;
+
+
+            return new ActionResult()
             {
-                attackValue = avoid();
-                attackProbability--;
-            }
-            return attackValue;
+                IsSuccess = isFire,
+                Target = isFire ? CharacterType.Player : CharacterType.None,
+                Result = isFire ? ResultType.GetDamage : ResultType.None,
+                Value = isFire ? data.Damage : 0,
+            };
         }
     }
 }

@@ -16,20 +16,19 @@ namespace MonteCarlo.Core
         public int PlayerHp => player.Hp;
         public int EnemyHp => enemy.Hp;
 
-
         private TurnStateMachine turn;
         private PlayerBase player;
         private EnemyBase enemy;
-        private RevolverToy revolverToy;
 
         private readonly List<ICommand> commands = new();
 
         void Awake()
         {
+            var dataHolder = BattleDataHolder.Instance;
+
             turn = new TurnStateMachine();
-            player = new PlayerBase(BattleDataHolder.Instance.Player);
-            enemy = new EnemyBase(BattleDataHolder.Instance.Enemy);
-            revolverToy = new RevolverToy();
+            player = new PlayerBase(dataHolder.Player);
+            enemy = new EnemyBase(dataHolder.Enemy, dataHolder.EnemyAction);
         }
 
         void Update()
@@ -160,10 +159,12 @@ namespace MonteCarlo.Core
                         turn.ApplyResult(TurnStateMachine.DefaultResult);
                         break;
                     }
-                case RevolverGunCommandTurnEnd:
+                case EnemyCommandAction actionCmd:
                     {
-                        player.DecreaseHp(revolverToy.revolverAttack());
-                        turn.ApplyResult(TurnStateMachine.DefaultResult);
+                        var result = enemy.Execute(actionCmd.ActionType);
+                        Debug.Log($"공격 결과: {result.IsSuccess}, 데미지: {result.Value}");
+                        player.DecreaseHp(result.Value);
+                        turn.ApplyResult(result);
                         break;
                     }
                 default:

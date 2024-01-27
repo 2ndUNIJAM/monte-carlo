@@ -6,5 +6,6 @@ namespace MonteCarlo.Data
     public class EnemyMasterDataModel : ScriptableObject
     {
         public int MaxHP;
+        public EnemyActionType[] actionTypes;
     }
 }
