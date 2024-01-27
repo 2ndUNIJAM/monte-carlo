@@ -16,28 +16,28 @@ namespace MonteCarlo.Core
 
         private void Load()
         {
-            // 마지막씬이 끝난거면 프로그램 종료.
-            if (SceneNames.Count <= idx)
-            {
-                SceneManager.LoadScene("Title", LoadSceneMode.Single);
-            }
-
             var sceneName = SceneNames[idx];
-            LoadScene(sceneName);
-            idx++;
-        }
-
-        private void LoadScene(string sceneName)
-        {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            idx++;
+
+            if (idx < SceneNames.Count)
+                SceneManager.sceneUnloaded += GotoNextScene;
+            else
+                SceneManager.sceneUnloaded += GotoTitle;
         }
 
-        private void OnSceneUnloaded(Scene scene)
+        private void GotoNextScene(Scene scene)
         {
-            Debug.Log("OnSceneUnloaded: " + scene);
-
+            Debug.Log("OnSceneUnloaded: " + scene.name);
             Load();
+            SceneManager.sceneUnloaded -= GotoNextScene;
+        }
+
+        private void GotoTitle(Scene scene)
+        {
+            Debug.Log("OnSceneUnloaded: " + scene.name);
+            SceneManager.LoadScene("Title", LoadSceneMode.Single);
+            SceneManager.sceneUnloaded -= GotoTitle;
         }
     }
 }
