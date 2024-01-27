@@ -15,6 +15,8 @@ namespace MonteCarlo.Util
                     return new PlayerCommandTurnEnd();
                 case CommandType.EnemyTurnEnd:
                     return new EnemyCommandTurnEnd();
+                case CommandType.RevolverGunTurnEnd:
+                    return new RevolverGunCommandTurnEnd();
                 case CommandType.PlayerAttack:
                     return new PlayerCommandAttack();
                 case CommandType.PlayerDefence:
