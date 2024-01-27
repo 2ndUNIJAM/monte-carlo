@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 11400000, guid: 34d26a6068c1c4c409c096a8716d008b, type: 2}
   Enemy: {fileID: 11400000, guid: 6f3319573db041444935f2810e77b8d8, type: 2}
+  EnemyAction: {fileID: 11400000, guid: c9b061718acc7894fb4d964fc7e0e095, type: 2}

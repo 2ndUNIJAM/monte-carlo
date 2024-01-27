@@ -16,7 +16,6 @@ namespace MonteCarlo.Core
         public int PlayerHp => player.Hp;
         public int EnemyHp => enemy.Hp;
 
-
         private TurnStateMachine turn;
         private PlayerBase player;
         private EnemyBase enemy;
@@ -25,9 +24,11 @@ namespace MonteCarlo.Core
 
         void Awake()
         {
+            var dataHolder = BattleDataHolder.Instance;
+
             turn = new TurnStateMachine();
-            player = new PlayerBase(BattleDataHolder.Instance.Player);
-            enemy = new EnemyBase(BattleDataHolder.Instance.Enemy);
+            player = new PlayerBase(dataHolder.Player);
+            enemy = new EnemyBase(dataHolder.Enemy, dataHolder.EnemyAction);
         }
 
         void Update()

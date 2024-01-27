@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using MonteCarlo.Core;
 using MonteCarlo.Data;
 using MonteCarlo.Struct;
+using UnityEngine;
 
 namespace MonteCarlo.Enemy
 {
@@ -12,15 +14,29 @@ namespace MonteCarlo.Enemy
         public float HpRatio => (float)Hp / MaxHp;
 
         private readonly EnemyMasterDataModel data;
-        private readonly List<EnemyAction> actions = new();
+        private readonly Dictionary<EnemyActionType, EnemyAction> actions = new();
 
-        public EnemyBase(EnemyMasterDataModel data)
+        public EnemyBase(EnemyMasterDataModel data, EnemyActionMasterDataModel actionData)
         {
             this.data = data;
             Hp = data.MaxHP;
 
             // TODO: 적 종류에 따른 액션 생성해서 넣기.
-            actions.Add(new RevolverToy(data.Revolver));
+            foreach (var actionType in data.actionTypes)
+            {
+                switch (actionType)
+                {
+                    case EnemyActionType.Revolver:
+                        actions.Add(actionType, new RevolverToy(actionData.Revolver));
+                        break;
+                    case EnemyActionType.DiceAttack:
+                        // actions.Add(action, new RevolverToy(actionData.Revolver));
+                        break;
+                    case EnemyActionType.DiceHeal:
+                        // actions.Add(action, new RevolverToy(actionData.Revolver));
+                        break;
+                }
+            }
         }
 
         public void DecreaseHp(int value)
@@ -28,9 +44,17 @@ namespace MonteCarlo.Enemy
             Hp -= value;
         }
 
-        public ActionResult Execute(int id)
+        public ActionResult Execute(EnemyActionType actionType)
         {
-            return actions[0].Execute();
+            if (actions.TryGetValue(actionType, out var action))
+            {
+                return action.Execute();
+            }
+            else
+            {
+                Debug.LogWarning($"Wrong action for this enemy. actionType - {actionType}");
+                return TurnStateMachine.DefaultResult;
+            }
         }
     }
 }
