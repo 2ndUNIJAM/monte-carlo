@@ -11,7 +11,6 @@ namespace MonteCarlo.Core
         public ActionResult PlayerResult { get; private set; }
         public ActionResult EnemyResult { get; private set; }
 
-
         public static readonly ActionResult DefaultResult = new()
         {
             IsSuccess = false,
@@ -39,8 +38,6 @@ namespace MonteCarlo.Core
                     {
                         Turn = TurnType.EnemyRandomRoll;
                         PlayerClear();
-
-
                     }
                     break;
                 case TurnType.EnemyRandomRoll:
