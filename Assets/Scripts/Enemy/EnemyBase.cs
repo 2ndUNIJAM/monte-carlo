@@ -2,19 +2,19 @@ namespace MonteCarlo.Enemy
 {
     public class EnemyBase
     {
-        public readonly int maxHp;
-        public int hp;
-        public float HpRatio => (float)hp / maxHp;
+        public int MaxHp { get; }
+        public int Hp { get; private set; }
+        public float HpRatio => (float)Hp / MaxHp;
 
         public EnemyBase(int maxHp)
         {
-            this.maxHp = maxHp;
-            this.hp = maxHp;
+            MaxHp = maxHp;
+            Hp = maxHp;
         }
 
-        public void decreaseHp(int value)
+        public void DecreaseHp(int value)
         {
-            hp -= value;
+            Hp -= value;
         }
     }
 }

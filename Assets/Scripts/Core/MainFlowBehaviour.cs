@@ -23,7 +23,7 @@ namespace MonteCarlo.Core
         void Awake()
         {
             turn = new TurnStateMachine();
-            player = new PlayerBase(BattleDataHolder.Instance.Player?.PlayerMaxHP ?? 100);
+            player = new PlayerBase(BattleDataHolder.Instance.Player);
             enemy = new EnemyBase(100);
             revolverToy = new RevolverToy();
         }
@@ -65,7 +65,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 case PlayerCommandAttack:
-                    Debug.Log(player.damage + " 로 공격 성공");
+                    Debug.Log(player.AttackInfo.Damage + " 로 공격 성공");
                     break;
                 case PlayerCommandDefence:
                     player.addDefence(5);
@@ -73,7 +73,7 @@ namespace MonteCarlo.Core
                     break;
                 case PlayerCommandHeal:
                     player.healHP();
-                    Debug.Log(player.hp + "만큼 힐 성공");
+                    Debug.Log(player.Hp + "만큼 힐 성공");
                     break;
                 default:
                     Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
@@ -118,7 +118,7 @@ namespace MonteCarlo.Core
                     break;
                 case RevolverGunCommandTurnEnd:
                     if (turn.Turn is Data.TurnType.Enemy)
-                        player.decreaseHp(revolverToy.revolverAttack());
+                        player.DecreaseHp(revolverToy.revolverAttack());
                     break;
                 default:
                     Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
