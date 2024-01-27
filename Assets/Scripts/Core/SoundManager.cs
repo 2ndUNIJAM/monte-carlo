@@ -26,7 +26,7 @@ namespace MonteCarlo.Core
             var revolverPath = "Sound/Revolver/";
             revolverRifleClip = Resources.Load<AudioClip>(revolverPath + "mix-rifle-spin");
             revolverCockClip = Resources.Load<AudioClip>(revolverPath + "cocking-a-revolver-6279");
-            revolverShotClip = Resources.Load<AudioClip>(revolverPath + "mix-shot-rifle-spin");
+            revolverShotClip = Resources.Load<AudioClip>(revolverPath + "single-pistol-gunshot-33-37187");
 
             var cardPath = "Sound/Card/";
             card001Clip = Resources.Load<AudioClip>(cardPath + "cardPlace3");
@@ -53,7 +53,7 @@ namespace MonteCarlo.Core
         public void onRevolverShotClip()
         {
             Debug.Log("sound-shot");
-            StartCoroutine(OnAudioCoroutine(new AudioClip[] { damageClip, revolverShotClip  }, 0.0f));
+            StartCoroutine(OnAudioCoroutine(new AudioClip[] { revolverShotClip, revolverRifleClip }, 1.7f));
         }
 
         public void onCardClip()
@@ -86,7 +86,6 @@ namespace MonteCarlo.Core
                 audioSource.PlayOneShot(audio);
                 yield return new WaitForSeconds(delaytime);
             }
-
         }
 
     }
