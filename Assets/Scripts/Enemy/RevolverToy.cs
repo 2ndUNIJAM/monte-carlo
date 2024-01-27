@@ -20,13 +20,13 @@ namespace MonteCarlo.Enemy
 
         private int avoid()
         {
+            Debug.Log("틱");
             return 0;
-            //Debug.Log("틱");
         }
         private int attack()
         {
+            Debug.Log("빵");
             return 50;
-            //Debug.Log("빵");
         }
 
         public int revolverAttack()

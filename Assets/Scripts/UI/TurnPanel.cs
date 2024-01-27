@@ -11,7 +11,7 @@ namespace MonteCarlo.UI
         private void Start()
         {
             turnText = GetComponent<TextMeshProUGUI>();
-            turnText.text = "my turn";
+            turnText.text = "";
         }
 
         private string GetTurnString()
