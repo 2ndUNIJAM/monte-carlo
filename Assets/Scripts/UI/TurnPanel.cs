@@ -18,11 +18,11 @@ namespace MonteCarlo.UI
         private string GetTurnString()
         {
             string result = "";
-            if (MainFlowBehaviour.Instance.getTurn() is TurnType.Player)
+            if (MainFlowBehaviour.Instance.Turn is TurnType.Player)
             {
                 result = "my turn";
             }
-            else if (MainFlowBehaviour.Instance.getTurn() is TurnType.Enemy)
+            else if (MainFlowBehaviour.Instance.Turn is TurnType.Enemy)
             {
                 result = "enemy turn";
             }

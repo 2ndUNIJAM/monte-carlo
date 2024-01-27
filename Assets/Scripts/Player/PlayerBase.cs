@@ -7,16 +7,12 @@ namespace MonteCarlo.Player
         public int damage;
         public int defence;
         public int heal;
+        public float HpRatio => (float)hp / maxHp;
 
         public PlayerBase(int maxHp)
         {
             this.maxHp = maxHp;
             this.hp = maxHp;
-        }
-
-        public float getHpRatio()
-        {
-            return (float)hp / maxHp;
         }
 
         public void decreaseHp(int value)
