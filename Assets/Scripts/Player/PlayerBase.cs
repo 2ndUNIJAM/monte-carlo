@@ -5,7 +5,7 @@ namespace MonteCarlo.Player
 {
     public class PlayerBase
     {
-        public int MaxHp => data.PlayerMaxHP;
+        public int MaxHp => data.MaxHP;
         public AttackData AttackInfo => data.Attack;
 
         public int Hp { get; private set; }
@@ -18,7 +18,7 @@ namespace MonteCarlo.Player
         {
             this.data = data;
 
-            Hp = data.PlayerMaxHP;
+            Hp = data.MaxHP;
         }
 
         public void DecreaseHp(int value)

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4452bd52195b445bcb582220cbfd5f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  PlayerMaxHP: 100
-  PlayerChanceNumerator: 0
-  PlayerMoney: 0
-  PlayerCoinSuccess: 0
-  PlayerCoinFail: 0
-  PlayerActionCount: 00000000000000000000000000000000
+  MaxHP: 100
+  HealAmount: 0
+  Attack:
+    Damage: 0
+    Probability: 0
