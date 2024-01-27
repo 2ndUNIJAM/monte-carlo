@@ -13,10 +13,23 @@ namespace MonteCarlo.Expression
         private void OnEnable()
         {
             // TODO: 애니메이션 재생.
-            // animator.Play("Idle");
+            if (animator !=null)
+            {
+                animator.Play("Execute");
+            }
+            else
+            {
+                // 임시
+                Callback();
+            }
+        }
 
-            // 임시
-            Callback();
+        void Update()
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                Callback();
+            }
         }
 
         // TODO: 애니메이션 종료시 호출되도록.
@@ -24,6 +37,9 @@ namespace MonteCarlo.Expression
         {
             var cmd = CommandGenerator.Generate(type);
             MainFlowBehaviour.Instance.AddCommand(cmd);
+
         }
     }
+
+    
 }
