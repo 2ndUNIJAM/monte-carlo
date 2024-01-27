@@ -4,10 +4,9 @@ using UnityEngine.UI;
 
 namespace MonteCarlo.Core
 {
-    public class BattleStarter : MonoBehaviour
+    public class GameStarter : MonoBehaviour
     {
         [SerializeField] Button button;
-        [SerializeField] BattleDataHolder dataHolder;
 
         void Start()
         {
@@ -19,7 +18,7 @@ namespace MonteCarlo.Core
 
         public void LoadBattle()
         {
-            SceneManager.LoadScene("Battle");
+            SceneManager.LoadScene("BattleBase", LoadSceneMode.Single);
         }
     }
 }
