@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using MonteCarlo.Data;
 using MonteCarlo.Core;
 
 namespace MonteCarlo.UI
@@ -17,16 +16,7 @@ namespace MonteCarlo.UI
 
         private string GetTurnString()
         {
-            string result = "";
-            if (MainFlowBehaviour.Instance.Turn is TurnType.Player)
-            {
-                result = "my turn";
-            }
-            else if (MainFlowBehaviour.Instance.Turn is TurnType.Enemy)
-            {
-                result = "enemy turn";
-            }
-            return result;
+            return MainFlowBehaviour.Instance.Turn.ToString();
         }
 
         public void Update()

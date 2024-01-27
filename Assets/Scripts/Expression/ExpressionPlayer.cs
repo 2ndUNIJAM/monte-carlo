@@ -14,6 +14,9 @@ namespace MonteCarlo.Expression
         {
             // TODO: 애니메이션 재생.
             // animator.Play("Idle");
+
+            // 임시
+            Callback();
         }
 
         // TODO: 애니메이션 종료시 호출되도록.

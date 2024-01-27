@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerResult
       objectReference: {fileID: 0}
+    - target: {fileID: 271872440888354792, guid: c774059004106b14eb964c8d48b32b71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1370259325312034893, guid: c774059004106b14eb964c8d48b32b71, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -255,6 +259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRoll
       objectReference: {fileID: 0}
+    - target: {fileID: 7065359341685994670, guid: 2843275cb9a3b364aaa025cba6559371, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -362,6 +370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyResult
       objectReference: {fileID: 0}
+    - target: {fileID: 3473777677935479105, guid: ca66d0b8233dc7145b7b6a71281a3b9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -468,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 7806281523141335630, guid: 9298ea66cf1f5d14ab170b59ac6ec0a7, type: 3}
       propertyPath: m_Name
       value: PlayerRoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806281523141335630, guid: 9298ea66cf1f5d14ab170b59ac6ec0a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
