@@ -2,7 +2,6 @@ using MonteCarlo.Core;
 using MonteCarlo.Data;
 using MonteCarlo.Util;
 using UnityEngine;
-using System.Collections;
 
 namespace MonteCarlo.Expression
 {
@@ -16,7 +15,7 @@ namespace MonteCarlo.Expression
             // TODO: 애니메이션 재생.
             if (animator !=null)
             {
-                animator.Play("Shoot");
+                animator.Play("Execute");
             }
             else
             {
@@ -27,8 +26,7 @@ namespace MonteCarlo.Expression
 
         void Update()
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shoot") &&
-                        animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 Callback();
             }
