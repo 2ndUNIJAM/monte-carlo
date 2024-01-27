@@ -6,9 +6,10 @@ namespace MonteCarlo.Core
 {
     public class TurnStateMachine
     {
-        public TurnType Turn { get; private set; } = TurnType.Player;
+        public TurnType Turn { get; private set; } = TurnType.Enemy;
 
-        public ActionResult Result { get; private set; }
+        public ActionResult PlayerResult { get; private set; }
+        public ActionResult EnemyResult { get; private set; }
 
         public static readonly ActionResult DefaultResult = new()
         {
@@ -23,33 +24,33 @@ namespace MonteCarlo.Core
             switch (Turn)
             {
                 case TurnType.PlayerRandomRoll:
-                    if (Result.IsSuccess)
+                    if (PlayerResult.IsSuccess)
                         Turn = TurnType.PlayerActionResult;
                     else
                     {
-                        Turn = TurnType.Enemy;
-                        Clear();
+                        Turn = TurnType.EnemyRandomRoll;
+                        PlayerClear();
                     }
                     break;
                 case TurnType.PlayerActionResult:
                     {
-                        Turn = TurnType.Enemy;
-                        Clear();
+                        Turn = TurnType.EnemyRandomRoll;
+                        PlayerClear();
                     }
                     break;
                 case TurnType.EnemyRandomRoll:
-                    if (Result.IsSuccess)
+                    if (EnemyResult.IsSuccess)
                         Turn = TurnType.EnemyActionResult;
                     else
                     {
-                        Turn = TurnType.Player;
-                        Clear();
+                        Turn = TurnType.Enemy;
+                        EnemyClear();
                     }
                     break;
                 case TurnType.EnemyActionResult:
                     {
-                        Turn = TurnType.Player;
-                        Clear();
+                        Turn = TurnType.Enemy;
+                        EnemyClear();
                     }
                     break;
                 default:
@@ -63,12 +64,12 @@ namespace MonteCarlo.Core
             switch (Turn)
             {
                 case TurnType.Player:
-                    Result = result;
+                    PlayerResult = result;
                     Turn = TurnType.PlayerRandomRoll;
                     break;
                 case TurnType.Enemy:
-                    Result = result;
-                    Turn = TurnType.EnemyRandomRoll;
+                    EnemyResult = result;
+                    Turn = TurnType.Player;
                     break;
                 default:
                     Debug.LogWarning($"Unexpected turn change {Turn}");
@@ -76,9 +77,18 @@ namespace MonteCarlo.Core
             }
         }
 
-        private void Clear()
+        public void ChangeTurn(TurnType turn)
         {
-            Result = DefaultResult;
+            Turn = turn;
+        }
+
+        private void PlayerClear()
+        {
+            PlayerResult = DefaultResult;
+        }
+        private void EnemyClear()
+        {
+            EnemyResult = DefaultResult;
         }
     }
 }
