@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MonteCarlo.Data;
 using MonteCarlo.Enemy;
 using MonteCarlo.Player;
-using MonteCarlo.Struct;
+using MonteCarlo.Struct.Command;
 using UnityEngine;
 
 namespace MonteCarlo.Core
@@ -24,7 +24,7 @@ namespace MonteCarlo.Core
         {
             turn = new TurnStateMachine();
             player = new PlayerBase(BattleDataHolder.Instance.Player);
-            enemy = new EnemyBase(100);
+            enemy = new EnemyBase(BattleDataHolder.Instance.Enemy);
             revolverToy = new RevolverToy();
         }
 
