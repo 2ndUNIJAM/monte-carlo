@@ -162,8 +162,7 @@ namespace MonteCarlo.Core
                 case EnemyCommandAction actionCmd:
                     {
                         var result = enemy.Execute(actionCmd.ActionType);
-                        Debug.Log($"공격 결과: {result.IsSuccess}, 데미지: {result.Value}");
-                        player.DecreaseHp(result.Value);
+                        Debug.Log($"행동 결과: {result.IsSuccess}, 행동 타입: {result.Result}, 값: {result.Value}");
                         turn.ApplyResult(result);
                         break;
                     }
@@ -179,6 +178,15 @@ namespace MonteCarlo.Core
             {
                 case EnemyCommandRollEnd:
                     turn.NextTurn();
+
+                    var result = turn.EnemyResult;
+                    if (result.IsSuccess)
+                    {
+                        if (result.Result is ResultType.GetDamage)
+                            player.DecreaseHp(result.Value);
+                        if (result.Result is ResultType.GetHeal)
+                            enemy.IncreateHp(result.Value);
+                    }
                     break;
                 default:
                     Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");

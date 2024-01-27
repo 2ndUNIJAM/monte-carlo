@@ -17,5 +17,7 @@ namespace MonteCarlo.Data
 
         // 적 행동
         EnemyRevolverAction = 201,
+        EnemyDiceAttack = 202,
+        EnemyDiceHeal = 203,
     }
 }

@@ -44,6 +44,11 @@ namespace MonteCarlo.Enemy
             Hp -= value;
         }
 
+        public void IncreateHp(int value)
+        {
+            Hp += value;
+        }
+
         public ActionResult Execute(EnemyActionType actionType)
         {
             if (actions.TryGetValue(actionType, out var action))
