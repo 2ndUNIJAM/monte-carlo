@@ -6,6 +6,7 @@ namespace MonteCarlo.Core
     {
         public PlayerMasterDataModel Player;
         public EnemyMasterDataModel Enemy;
+        public EnemyActionMasterDataModel EnemyAction;
 
         private void Awake()
         {
