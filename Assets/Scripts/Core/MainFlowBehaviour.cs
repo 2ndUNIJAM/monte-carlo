@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MonteCarlo.Data;
 using MonteCarlo.Enemy;
 using MonteCarlo.Player;
-using MonteCarlo.Struct;
+using MonteCarlo.Struct.Command;
 using UnityEngine;
 
 namespace MonteCarlo.Core

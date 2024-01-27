@@ -1,4 +1,4 @@
-namespace MonteCarlo.Struct
+namespace MonteCarlo.Struct.Command
 {
     /// <summary>
     /// 적 확률 계산 연출 종료.

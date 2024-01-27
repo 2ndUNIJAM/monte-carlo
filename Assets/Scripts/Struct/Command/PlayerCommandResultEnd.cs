@@ -1,4 +1,4 @@
-namespace MonteCarlo.Struct
+namespace MonteCarlo.Struct.Command
 {
     /// <summary>
     /// 플레이어 행동 결과 표시 종료.
