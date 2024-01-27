@@ -26,7 +26,7 @@ namespace MonteCarlo.Expression
 
         void Update()
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f),
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 Callback();
             }
