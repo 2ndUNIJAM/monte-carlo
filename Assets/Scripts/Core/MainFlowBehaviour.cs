@@ -66,7 +66,7 @@ namespace MonteCarlo.Core
         {
             return player.AttackInfo.Probability;
         }
-        public int getPlayerDefenceDamage()
+        public int getPlayerDefenceAmount()
         {
             return player.DefenceInfo.DefenceAmount;
         }
@@ -75,7 +75,7 @@ namespace MonteCarlo.Core
             return player.DefenceInfo.Probability;
         }
 
-        public int getPlayerHealDamage()
+        public int getPlayerHealAmount()
         {
             return player.HealInfo.HealAmount;
         }
