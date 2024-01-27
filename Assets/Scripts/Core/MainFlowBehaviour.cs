@@ -22,6 +22,7 @@ namespace MonteCarlo.Core
 
         private readonly List<ICommand> commands = new();
 
+
         void Awake()
         {
             var dataHolder = BattleDataHolder.Instance;
@@ -48,12 +49,15 @@ namespace MonteCarlo.Core
                         break;
                     case TurnType.Enemy:
                         EnemyTurn(cmd);
+
                         break;
                     case TurnType.EnemyRandomRoll:
                         EnemyRandomRoll(cmd);
+
                         break;
                     case TurnType.EnemyActionResult:
                         EnemyActionResult(cmd);
+
                         break;
                 }
             }
@@ -187,6 +191,8 @@ namespace MonteCarlo.Core
                         if (result.Result is ResultType.GetHeal)
                             enemy.IncreateHp(result.Value);
                     }
+                    SoundManager.Instance.onRevolverCockClip();
+
                     break;
                 default:
                     Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");

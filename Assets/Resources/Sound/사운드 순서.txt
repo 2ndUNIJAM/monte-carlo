@@ -1,0 +1,14 @@
+리볼버:
+총알넣기 - rifle-or-shotgun
+실린더 돌리는 소리 - revolver-spin
+해머 당기는 소리 - cocking-a-revolver
+총 쏘는 소리 - single-pistol-gunshot
+
+피격(나 또는 적이 피해 입을 때)
+hit20 --> zapsplat~~ 이어서
+
+카드소리는 순서 상관x 그냥 번갈아서 또는 하나만
+
+동전:
+튕기기 - coin-flip
+테이블에 떨어지는 소리 - single-coin

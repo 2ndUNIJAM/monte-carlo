@@ -11,6 +11,7 @@ namespace MonteCarlo.Core
         public ActionResult PlayerResult { get; private set; }
         public ActionResult EnemyResult { get; private set; }
 
+
         public static readonly ActionResult DefaultResult = new()
         {
             IsSuccess = false,
@@ -46,12 +47,14 @@ namespace MonteCarlo.Core
                         Turn = TurnType.Enemy;
                         EnemyClear();
                     }
+
                     break;
                 case TurnType.EnemyActionResult:
                     {
                         Turn = TurnType.Enemy;
                         EnemyClear();
                     }
+
                     break;
                 default:
                     Debug.LogWarning($"Unexpected turn change {Turn}");

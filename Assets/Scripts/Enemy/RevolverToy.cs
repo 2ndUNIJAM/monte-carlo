@@ -1,3 +1,4 @@
+using MonteCarlo.Core;
 using MonteCarlo.Data;
 using MonteCarlo.Struct;
 using UnityEngine;
@@ -24,7 +25,6 @@ namespace MonteCarlo.Enemy
                 misfireCnt = 0;
             else
                 misfireCnt++;
-
 
             return new ActionResult()
             {
