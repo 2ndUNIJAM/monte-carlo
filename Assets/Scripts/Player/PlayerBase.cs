@@ -8,6 +8,8 @@ namespace MonteCarlo.Player
         public int defence;
         public int heal;
 
+        public int PlayerChanceNumerator;
+
         public PlayerBase(int maxHp)
         {
             this.maxHp = maxHp;
