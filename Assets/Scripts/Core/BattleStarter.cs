@@ -2,23 +2,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BattleStarter : MonoBehaviour
+namespace MonteCarlo.Core
 {
-    [SerializeField] Button button;
-    [SerializeField] BattleDataHolder dataHolder;
-
-    void Start()
+    public class BattleStarter : MonoBehaviour
     {
-        DontDestroyOnLoad(dataHolder);
+        [SerializeField] Button button;
+        [SerializeField] BattleDataHolder dataHolder;
 
-        button.onClick.AddListener(() =>
+        void Start()
         {
-            LoadBattle();
-        });
-    }
+            DontDestroyOnLoad(dataHolder);
 
-    public void LoadBattle()
-    {
-        SceneManager.LoadScene("Battle");
+            button.onClick.AddListener(() =>
+            {
+                LoadBattle();
+            });
+        }
+
+        public void LoadBattle()
+        {
+            SceneManager.LoadScene("Battle");
+        }
     }
 }

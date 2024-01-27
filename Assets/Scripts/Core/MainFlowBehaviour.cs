@@ -23,7 +23,7 @@ namespace MonteCarlo.Core
         void Awake()
         {
             turn = new TurnStateMachine();
-            player = new PlayerBase(BattleDataHolder.Instance.player?.playerHP ?? 100);
+            player = new PlayerBase(BattleDataHolder.Instance.Player?.PlayerMaxHP ?? 100);
             enemy = new EnemyBase(100);
             revolverToy = new RevolverToy();
         }

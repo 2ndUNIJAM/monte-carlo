@@ -1,4 +1,9 @@
-public class BattleDataHolder : SingletonBehaviour<BattleDataHolder>
+using MonteCarlo.Data;
+
+namespace MonteCarlo.Core
 {
-    public playerScriptableObject player;
+    public class BattleDataHolder : SingletonBehaviour<BattleDataHolder>
+    {
+        public PlayerDataModel Player;
+    }
 }

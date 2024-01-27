@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4452bd52195b445bcb582220cbfd5f, type: 3}
-  m_Name: Data
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
-  playerHP: 100
-  playerAttack: 0
-  numberOfPrefabsToCreate: 0
-  spawnPoints: []
+  PlayerMaxHP: 100
+  PlayerChanceNumerator: 0
+  PlayerMoney: 0
+  PlayerCoinSuccess: 0
+  PlayerCoinFail: 0
+  PlayerActionCount: 00000000000000000000000000000000
