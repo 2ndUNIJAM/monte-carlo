@@ -19,3 +19,21 @@ MonoBehaviour:
     Damages: 010000000200000003000000040000000500000006000000
   DiceHeal:
     Amounts: 010000000200000003000000040000000500000006000000
+  Box:
+    actions:
+    - Target: 1
+      Type: 1
+      Value: 100
+      Probability: 0.2
+    - Target: 1
+      Type: 1
+      Value: 50
+      Probability: 0.5
+    - Target: 2
+      Type: 2
+      Value: 100
+      Probability: 0.2
+    - Target: 2
+      Type: 2
+      Value: 50
+      Probability: 0.2

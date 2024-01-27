@@ -35,6 +35,18 @@ namespace MonteCarlo.Enemy
                     case EnemyActionType.DiceHeal:
                         actions.Add(actionType, new DiceHealer(actionData.DiceHeal));
                         break;
+                    case EnemyActionType.Box1:
+                        actions.Add(actionType, new BoxAction(actionData.Box, 1));
+                        break;
+                    case EnemyActionType.Box2:
+                        actions.Add(actionType, new BoxAction(actionData.Box, 2));
+                        break;
+                    case EnemyActionType.Box3:
+                        actions.Add(actionType, new BoxAction(actionData.Box, 3));
+                        break;
+                    case EnemyActionType.Box4:
+                        actions.Add(actionType, new BoxAction(actionData.Box, 4));
+                        break;
                 }
             }
         }
