@@ -2,6 +2,7 @@ using MonteCarlo.Core;
 using MonteCarlo.Data;
 using MonteCarlo.Util;
 using UnityEngine;
+using System.Collections;
 
 namespace MonteCarlo.Expression
 {
@@ -16,19 +17,6 @@ namespace MonteCarlo.Expression
             if (animator !=null)
             {
                 animator.Play("Shoot");
-
-                while (true)
-                {
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shoot") &&
-                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                    {
-                        Debug.Log("콜백실행");
-                        Callback();
-                        break;
-                    }
-                }
-                
-                Debug.Log("ㄱㄱ");
             }
             else
             {
@@ -37,12 +25,23 @@ namespace MonteCarlo.Expression
             }
         }
 
+        void Update()
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shoot") &&
+                        animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                Callback();
+            }
+        }
+
         // TODO: 애니메이션 종료시 호출되도록.
         private void Callback()
         {
-            Debug.Log("콜백");
             var cmd = CommandGenerator.Generate(type);
             MainFlowBehaviour.Instance.AddCommand(cmd);
+
         }
     }
+
+    
 }
