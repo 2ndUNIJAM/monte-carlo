@@ -15,14 +15,6 @@ namespace MonteCarlo.Util
                     return new PlayerCommandTurnEnd();
                 case CommandType.EnemyTurnEnd:
                     return new EnemyCommandTurnEnd();
-                case CommandType.RevolverGunTurnEnd:
-                    return new EnemyCommandAction(EnemyActionType.Revolver);
-                case CommandType.PlayerAttack:
-                    return new PlayerCommandAttack();
-                case CommandType.PlayerDefence:
-                    return new PlayerCommandDefence();
-                case CommandType.PlayerHeal:
-                    return new PlayerCommandHeal();
                 case CommandType.PlayerRollEnd:
                     return new PlayerCommandRollEnd();
                 case CommandType.PlayerResultEnd:
@@ -31,6 +23,17 @@ namespace MonteCarlo.Util
                     return new EnemyCommandRollEnd();
                 case CommandType.EnemyResultEnd:
                     return new EnemyCommandResultEnd();
+
+                case CommandType.PlayerAttack:
+                    return new PlayerCommandAttack();
+                case CommandType.PlayerDefence:
+                    return new PlayerCommandDefence();
+                case CommandType.PlayerHeal:
+                    return new PlayerCommandHeal();
+
+                case CommandType.EnemyRevolverAction:
+                    return new EnemyCommandAction(EnemyActionType.Revolver);
+                    // case CommandType
             }
 
             Debug.Log($"Not Implemented Command {type}");

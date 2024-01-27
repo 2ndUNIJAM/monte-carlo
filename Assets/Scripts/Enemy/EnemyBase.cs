@@ -30,10 +30,10 @@ namespace MonteCarlo.Enemy
                         actions.Add(actionType, new RevolverToy(actionData.Revolver));
                         break;
                     case EnemyActionType.DiceAttack:
-                        // actions.Add(action, new RevolverToy(actionData.Revolver));
+                        actions.Add(actionType, new DiceAttacker(actionData.DiceAttack));
                         break;
                     case EnemyActionType.DiceHeal:
-                        // actions.Add(action, new RevolverToy(actionData.Revolver));
+                        actions.Add(actionType, new DiceHealer(actionData.DiceHeal));
                         break;
                 }
             }
@@ -42,6 +42,11 @@ namespace MonteCarlo.Enemy
         public void DecreaseHp(int value)
         {
             Hp -= value;
+        }
+
+        public void IncreateHp(int value)
+        {
+            Hp += value;
         }
 
         public ActionResult Execute(EnemyActionType actionType)

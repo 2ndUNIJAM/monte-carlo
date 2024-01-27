@@ -1,20 +1,45 @@
 using MonteCarlo.Core;
 using MonteCarlo.Data;
+using MonteCarlo.Struct.Command;
 using MonteCarlo.Util;
 using UnityEngine;
+
 public class TurnAi : MonoBehaviour
 {
-    private float DelayTimer = 1.0f; // 임시
+    private EnemyMasterDataModel enemyData => BattleDataHolder.Instance.Enemy;
+    private int flag = 0;
+
     private void Update()
     {
         if (MainFlowBehaviour.Instance.Turn is TurnType.Enemy)
         {
-            DelayTimer -= Time.deltaTime;
-            if (DelayTimer > 0) return;
-            DelayTimer = 1.0f;
-
-            var cmd = CommandGenerator.Generate(CommandType.EnemyTurnEnd);
-            MainFlowBehaviour.Instance.AddCommand(cmd);
+            switch (enemyData.Type)
+            {
+                case EnemyType.Revolver:
+                    Revolver();
+                    break;
+                case EnemyType.Dice:
+                    Dice();
+                    break;
+            }
         }
+    }
+
+    private void Revolver()
+    {
+        var cmd = CommandGenerator.Generate(CommandType.EnemyRevolverAction);
+        MainFlowBehaviour.Instance.AddCommand(cmd);
+    }
+
+    private void Dice()
+    {
+        ICommand cmd;
+        if (flag % 2 == 0)
+            cmd = CommandGenerator.Generate(CommandType.EnemyDiceAttack);
+        else
+            cmd = CommandGenerator.Generate(CommandType.EnemyDiceHeal);
+
+        MainFlowBehaviour.Instance.AddCommand(cmd);
+        flag++;
     }
 }
