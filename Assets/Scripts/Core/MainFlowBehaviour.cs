@@ -34,8 +34,8 @@ namespace MonteCarlo.Core
 
         void Update()
         {
-            var previousTurn= turn.Turn;
-            
+            var previousTurn = turn.Turn;
+
             foreach (var cmd in commands)
             {
                 switch (turn.Turn)
@@ -61,7 +61,8 @@ namespace MonteCarlo.Core
                 }
             }
             commands.Clear();
-            if (turn.Turn != previousTurn) {
+            if (turn.Turn != previousTurn)
+            {
                 switch (turn.Turn)
                 {
                     case TurnType.Player:
@@ -123,7 +124,7 @@ namespace MonteCarlo.Core
                         enemy.DecreaseHp(result.Value);
                         turn.ApplyResult(result);
                         SoundManager.Instance.onCoinClip();
-                        
+
                         break;
                     }
                 case PlayerCommandDefence:
@@ -202,8 +203,6 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case EnemyCommandRollEnd:
-                    turn.NextTurn();
-
                     var result = turn.EnemyResult;
                     if (result.IsSuccess)
                     {
@@ -212,6 +211,8 @@ namespace MonteCarlo.Core
                         if (result.Result is ResultType.GetHeal)
                             enemy.IncreateHp(result.Value);
                     }
+
+                    turn.NextTurn();
                     SoundManager.Instance.onRevolverCockClip();
 
                     break;
