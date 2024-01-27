@@ -1,4 +1,5 @@
 using MonteCarlo.Data;
+using MonteCarlo.Struct;
 using UnityEngine;
 
 namespace MonteCarlo.Core
@@ -7,15 +8,22 @@ namespace MonteCarlo.Core
     {
         public TurnType Turn { get; private set; } = TurnType.Player;
 
-        public bool IsSuccess { get; private set; } = false;
-        public int Value { get; private set; } = 0;
+        public ActionResult Result { get; private set; }
+
+        public static readonly ActionResult DefaultResult = new()
+        {
+            IsSuccess = false,
+            Target = CharacterType.None,
+            Result = ResultType.None,
+            Value = 0,
+        };
 
         public void NextTurn()
         {
             switch (Turn)
             {
                 case TurnType.PlayerRandomRoll:
-                    if (IsSuccess)
+                    if (Result.IsSuccess)
                         Turn = TurnType.PlayerActionResult;
                     else
                     {
@@ -30,7 +38,7 @@ namespace MonteCarlo.Core
                     }
                     break;
                 case TurnType.EnemyRandomRoll:
-                    if (IsSuccess)
+                    if (Result.IsSuccess)
                         Turn = TurnType.EnemyActionResult;
                     else
                     {
@@ -44,21 +52,22 @@ namespace MonteCarlo.Core
                         Clear();
                     }
                     break;
+                default:
+                    Debug.LogWarning($"Unexpected turn change {Turn}");
+                    break;
             }
         }
 
-        public void ApplyResult(bool isSuccess, int value)
+        public void ApplyResult(ActionResult result)
         {
             switch (Turn)
             {
                 case TurnType.Player:
-                    IsSuccess = isSuccess;
-                    Value = value;
+                    Result = result;
                     Turn = TurnType.PlayerRandomRoll;
                     break;
                 case TurnType.Enemy:
-                    IsSuccess = isSuccess;
-                    Value = value;
+                    Result = result;
                     Turn = TurnType.EnemyRandomRoll;
                     break;
                 default:
@@ -69,8 +78,7 @@ namespace MonteCarlo.Core
 
         private void Clear()
         {
-            IsSuccess = false;
-            Value = 0;
+            Result = DefaultResult;
         }
     }
 }

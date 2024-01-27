@@ -54,12 +54,17 @@ namespace MonteCarlo.Player
             Hp += data.Heal.HealAmount;
         }
 
-        public (bool isSucceed, int damage) AttackAction()
+        public ActionResult AttackAction()
         {
             var attackData = data.Attack;
-            bool isSucceed = Random.Range(0f, 1f) < attackData.Probability;
-            int damage = isSucceed ? attackData.Damage : 0;
-            return (isSucceed, damage);
+            bool isSuccess = Random.Range(0f, 1f) < attackData.Probability;
+            return new ActionResult()
+            {
+                IsSuccess = isSuccess,
+                Target = isSuccess ? CharacterType.Enemy : CharacterType.None,
+                Result = isSuccess ? ResultType.GetDamage : ResultType.None,
+                Value = isSuccess ? attackData.Damage : 0,
+            };
         }
     }
 }

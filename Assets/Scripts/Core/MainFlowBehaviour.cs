@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using MonteCarlo.Data;
 using MonteCarlo.Enemy;
 using MonteCarlo.Player;
+using MonteCarlo.Struct;
 using MonteCarlo.Struct.Command;
 using UnityEngine;
 
@@ -92,15 +93,15 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case PlayerCommandTurnEnd:
-                    turn.ApplyResult(false, 0);
+                    turn.ApplyResult(TurnStateMachine.DefaultResult);
                     break;
                 case PlayerCommandAttack:
                     {
-                        var (isSucceed, damage) = player.AttackAction();
-                        Debug.Log("공격 성공?" + isSucceed);
-                        Debug.Log(damage + " 로 공격 성공");
-                        enemy.DecreaseHp(damage);
-                        turn.ApplyResult(isSucceed, damage);
+                        var result = player.AttackAction();
+                        Debug.Log("공격 성공?" + result.IsSuccess);
+                        Debug.Log(result.Value + " 로 공격 성공");
+                        enemy.DecreaseHp(result.Value);
+                        turn.ApplyResult(result);
                         break;
                     }
                 case PlayerCommandDefence:
@@ -152,16 +153,12 @@ namespace MonteCarlo.Core
             {
                 case EnemyCommandTurnEnd:
                     {
-                        turn.ApplyResult(false, 0);
-
+                        turn.ApplyResult(TurnStateMachine.DefaultResult);
                         break;
                     }
                 case RevolverGunCommandTurnEnd:
                     {
-                        if (turn.Turn is TurnType.Enemy)
-                        {
-                            player.DecreaseHp(revolverToy.revolverAttack());
-                        }
+                        player.DecreaseHp(revolverToy.revolverAttack());
                         break;
                     }
                 default:
