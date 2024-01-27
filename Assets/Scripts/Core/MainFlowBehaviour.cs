@@ -30,6 +30,11 @@ namespace MonteCarlo.Core
         {
             return player.getHpRatio();
         }
+
+        public void decreasePlayerHp(int hitValue)
+        {
+            player.decreaseHp(hitValue);
+        }
         public float getEnemyHpRatio()
         {
             return enemy.getHpRatio();
