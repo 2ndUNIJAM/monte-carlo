@@ -23,6 +23,14 @@ namespace MonteCarlo.Util
                     return new PlayerCommandDefence();
                 case CommandType.PlayerHeal:
                     return new PlayerCommandHeal();
+                case CommandType.PlayerRollEnd:
+                    return new PlayerCommandRollEnd();
+                case CommandType.PlayerResultEnd:
+                    return new PlayerCommandResultEnd();
+                case CommandType.EnemyRollEnd:
+                    return new EnemyCommandRollEnd();
+                case CommandType.EnemyResultEnd:
+                    return new EnemyCommandResultEnd();
             }
 
             Debug.Log($"Not Implemented Command {type}");
