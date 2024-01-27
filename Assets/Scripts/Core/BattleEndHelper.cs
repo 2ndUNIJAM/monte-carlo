@@ -11,12 +11,7 @@ namespace MonteCarlo.Core
 
         public static void Defeat()
         {
-            BackToTitle();
-        }
-
-        private static void BackToTitle()
-        {
-            SceneManager.LoadScene("Title", LoadSceneMode.Single);
+            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
         }
     }
 }
