@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2109323327}
-  type: 2
+  type: 1
 --- !u!114 &2109323327
 MonoBehaviour:
   m_ObjectHideFlags: 0

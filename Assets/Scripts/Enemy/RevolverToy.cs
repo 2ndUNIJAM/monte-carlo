@@ -1,5 +1,4 @@
 using UnityEngine;
-using MonteCarlo.Core;
 
 namespace MonteCarlo.Enemy
 {
@@ -14,34 +13,37 @@ namespace MonteCarlo.Enemy
             this.attackProbability = this.maxProbability;
         }
 
-        private float getProbability()
+        public float getProbability()
         {
             return 1 / (float)attackProbability;
         }
 
-        private void avoid()
+        private int avoid()
         {
+            return 0;
             //Debug.Log("틱");
         }
-        private void attack()
+        private int attack()
         {
-            MainFlowBehaviour.Instance.decreasePlayerHp(50);
+            return 50;
             //Debug.Log("빵");
         }
 
-        public void revolverAttack()
+        public int revolverAttack()
         {
+            int attackValue;
             // 랜덤 확률로 공격 여부 결정
             if (Random.Range(0f, 1f) < getProbability())
             {
-                attack();
+                attackValue = attack();
                 attackProbability = 6;
             }
             else
             {
-                avoid();
+                attackValue = avoid();
                 attackProbability--;
             }
+            return attackValue;
         }
     }
 }

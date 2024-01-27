@@ -34,10 +34,6 @@ namespace MonteCarlo.Core
             return player.getHpRatio();
         }
 
-        public void decreasePlayerHp(int hitValue)
-        {
-            player.decreaseHp(hitValue);
-        }
         public float getEnemyHpRatio()
         {
             return enemy.getHpRatio();
@@ -59,7 +55,7 @@ namespace MonteCarlo.Core
                         break;
                     case RevolverGunCommandTurnEnd:
                         if (turn.Turn is Data.TurnType.Enemy)
-                            revolverToy.revolverAttack();
+                            player.decreaseHp(revolverToy.revolverAttack());
                         break;
                     case PlayerCommandAttack:
                         Debug.Log(player.damage +" 로 공격 성공");
