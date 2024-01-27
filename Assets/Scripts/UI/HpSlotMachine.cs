@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MonteCarlo.Player;
+using MonteCarlo.Core;
 
 public class HpSlotMachine : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class HpSlotMachine : MonoBehaviour
 
     public List<int> StartList = new List<int> ( );
     public List<int> ResultIndexList = new List<int> ( );
-    private PlayerBase player;
 
     public int ItemCnt = 3;
 
@@ -30,6 +30,7 @@ public class HpSlotMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Hp = MainFlowBehaviour.Instance.PlayerHp;
         if (Hp >= 100) // 세 자리 자연수일 때는 
         {
             Hp_1 = Hp / 100;

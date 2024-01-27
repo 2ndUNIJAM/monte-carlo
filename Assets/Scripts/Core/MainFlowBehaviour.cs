@@ -12,6 +12,7 @@ namespace MonteCarlo.Core
         public TurnType Turn => turn.Turn;
         public float PlayerHpRatio => player.HpRatio;
         public float EnemyHpRatio => enemy.HpRatio;
+        public int PlayerHp => player.Hp;
 
         private TurnStateMachine turn;
         private PlayerBase player;
