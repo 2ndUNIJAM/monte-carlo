@@ -6,7 +6,7 @@ namespace MonteCarlo.Data
     [CreateAssetMenu(fileName = "PlayerMasterData", menuName = "ScriptableObjects/PlayerMasterData")]
     public class PlayerMasterDataModel : ScriptableObject
     {
-        public int PlayerMaxHP;
+        public int MaxHP;
         public int HealAmount;
 
         [Header("Attack")]
