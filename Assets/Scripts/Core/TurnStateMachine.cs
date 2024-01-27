@@ -77,11 +77,6 @@ namespace MonteCarlo.Core
             }
         }
 
-        public void ChangeTurn(TurnType turn)
-        {
-            Turn = turn;
-        }
-
         private void PlayerClear()
         {
             PlayerResult = DefaultResult;
