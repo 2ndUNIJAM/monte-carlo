@@ -159,9 +159,9 @@ namespace MonteCarlo.Core
                         turn.ApplyResult(TurnStateMachine.DefaultResult);
                         break;
                     }
-                case RevolverGunCommandTurnEnd:
+                case EnemyCommandAction actionCmd:
                     {
-                        var result = enemy.Execute(0);
+                        var result = enemy.Execute(actionCmd.ActionType);
                         Debug.Log($"공격 결과: {result.IsSuccess}, 데미지: {result.Value}");
                         player.DecreaseHp(result.Value);
                         turn.ApplyResult(result);
