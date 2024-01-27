@@ -13,6 +13,7 @@ namespace MonteCarlo.Enemy
         private int misfireCnt;
         private int leftCylinder => data.cylinderCnt - misfireCnt;
 
+        private bool isFirst = true;
         public RevolverToy(RevolverActionData data)
         {
             this.data = data;
@@ -20,11 +21,15 @@ namespace MonteCarlo.Enemy
 
         public override ActionResult Execute()
         {
+            if (isFirst)
+            {
+                SoundManager.Instance.onRevolverRifleClip();
+                isFirst = false;
+            }
             var isFire = Random.Range(0f, 1f) < Probability;
             if (isFire)
             {
                 misfireCnt = 0;
-                SoundManager.Instance.onRevolverShotClip();
             }
             else
                 misfireCnt++;
