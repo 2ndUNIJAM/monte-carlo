@@ -47,7 +47,6 @@ namespace MonteCarlo.UI
                                     if (DelayTimer > 0) return;
                                     DelayTimer = 1.0f;
 
-                                    Debug.Log("실행실행");
                                     var value = 50;
                                     var probability = 0.2f;
                                     var imageIndex = 0;
