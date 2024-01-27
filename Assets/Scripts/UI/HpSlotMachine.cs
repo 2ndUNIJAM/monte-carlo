@@ -19,7 +19,7 @@ public class HpSlotMachine : MonoBehaviour
 
     public int ItemCnt = 3;
 
-    public int Hp = 80;
+    public int Hp = 123;
 
     public int Hp_1;
     public int Hp_2;
@@ -59,7 +59,7 @@ public class HpSlotMachine : MonoBehaviour
     IEnumerator StartSlot ( int SlotIndex )
     {
         Debug.Log(SlotSkillObject[SlotIndex].transform.localPosition);
-        for ( int i = 0 ; i < ( Slot.Length * 2 + (Slot.Length - answer[SlotIndex]) + SlotIndex * 20 ) * 2 ; i++ )
+        for ( int i = 0 ; i < ( Slot.Length * 2 + (Slot.Length - answer[SlotIndex]+1) + SlotIndex * 10 ) * 2 ; i++ )
         {
             SlotSkillObject[SlotIndex].transform.localPosition -= new Vector3 ( 0, 50f, 0 );
             if ( SlotSkillObject[SlotIndex].transform.localPosition.y < 0f )
