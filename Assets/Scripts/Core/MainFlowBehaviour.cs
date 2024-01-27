@@ -120,7 +120,6 @@ namespace MonteCarlo.Core
 
         private void PlayerRandomRoll(ICommand command)
         {
-            Debug.Log(command);
             switch (command)
             {
                 case PlayerCommandRollEnd:

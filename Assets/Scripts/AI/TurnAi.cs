@@ -2,8 +2,7 @@ using MonteCarlo.Core;
 using MonteCarlo.Data;
 using MonteCarlo.Util;
 using UnityEngine;
-
-public class TrunAI : MonoBehaviour
+public class TurnAi : MonoBehaviour
 {
     private float DelayTimer = 1.0f; // 임시
     private void Update()
