@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MonteCarlo.Player;
 
-public class SlotMachineMgr : MonoBehaviour
+public class HpSlotMachine : MonoBehaviour
 {
     public GameObject[] SlotSkillObject;
     public GameObject[] Slot;
@@ -21,6 +21,7 @@ public class SlotMachineMgr : MonoBehaviour
     public int Hp_2;
     public int Hp_3;
 
+    public int[] answer = { 0, 0, 0 };
 
     // Start is called before the first frame update
     void Start ( )
@@ -36,7 +37,9 @@ public class SlotMachineMgr : MonoBehaviour
         Hp_3 = Hp % 10;
         Hp_2 = (Hp % 100) / 10;
 
-
+        answer[0] = Hp_1;
+        answer[1] = Hp_2;
+        answer[2] = Hp_3;
 
         for ( int i = 0 ; i < ItemCnt * Slot.Length; i++ )
         {
