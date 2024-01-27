@@ -108,7 +108,7 @@ namespace MonteCarlo.Core
                     Debug.Log(player.Hp + "만큼 힐 성공");
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
@@ -121,7 +121,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
 
@@ -135,7 +135,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
 
@@ -153,7 +153,7 @@ namespace MonteCarlo.Core
                         player.DecreaseHp(revolverToy.revolverAttack());
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
@@ -166,7 +166,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
@@ -179,7 +179,7 @@ namespace MonteCarlo.Core
                     turn.NextTurn();
                     break;
                 default:
-                    Debug.LogWarning($"Turn-Command miss match - Turn: Player / Command: {command}");
+                    Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
         }
