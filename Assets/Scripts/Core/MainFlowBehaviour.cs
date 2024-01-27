@@ -15,11 +15,14 @@ namespace MonteCarlo.Core
         private EnemyBase enemy;
         private readonly List<ICommand> commands = new();
 
+        private RevolverToy revolverToy;
+
         void Awake()
         {
             turn = new TurnStateMachine();
             player = new PlayerBase(BattleDataHolder.Instance.player?.playerHP ?? 100);
             enemy = new EnemyBase(100);
+            revolverToy = new RevolverToy();
         }
         public TurnType getTurn()
         {
@@ -53,6 +56,10 @@ namespace MonteCarlo.Core
                     case EnemyCommandTurnEnd:
                         if (turn.Turn is Data.TurnType.Enemy)
                             turn.ChangeTurn();
+                        break;
+                    case RevolverGunCommandTurnEnd:
+                        if (turn.Turn is Data.TurnType.Enemy)
+                            revolverToy.revolverAttack();
                         break;
                     case PlayerCommandAttack:
                         Debug.Log(player.damage +" 로 공격 성공");

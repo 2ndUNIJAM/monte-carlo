@@ -7,5 +7,6 @@ namespace MonteCarlo.Data
         PlayerAttack,
         PlayerDefence,
         PlayerHeal,
+        RevolverGunTurnEnd,
     }
 }
