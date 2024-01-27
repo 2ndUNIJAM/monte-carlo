@@ -9,6 +9,10 @@ public class HpSlotMachine : MonoBehaviour
     public GameObject[] SlotSkillObject;
     public GameObject[] Slot;
 
+    public GameObject[] Slot1;
+    public GameObject[] Slot2;
+    public GameObject[] Slot3;
+
     public List<int> StartList = new List<int> ( );
     public List<int> ResultIndexList = new List<int> ( );
     private PlayerBase player;
@@ -54,14 +58,15 @@ public class HpSlotMachine : MonoBehaviour
     
     IEnumerator StartSlot ( int SlotIndex )
     {
-        for ( int i = 0 ; i < ( ItemCnt * ( 6 + SlotIndex * 4 ) + answer[SlotIndex] ) * 2 ; i++ )
+        Debug.Log(SlotSkillObject[SlotIndex].transform.localPosition);
+        for ( int i = 0 ; i < ( Slot.Length * 2 + (Slot.Length - answer[SlotIndex]) + SlotIndex * 20 ) * 2 ; i++ )
         {
             SlotSkillObject[SlotIndex].transform.localPosition -= new Vector3 ( 0, 50f, 0 );
-            if ( SlotSkillObject[SlotIndex].transform.localPosition.y < 50f )
+            if ( SlotSkillObject[SlotIndex].transform.localPosition.y < 0f )
             {
-                SlotSkillObject[SlotIndex].transform.localPosition += new Vector3 ( 0, 300f, 0 );
+                SlotSkillObject[SlotIndex].transform.localPosition += new Vector3 ( 0, 1000f, 0 );
             }
-            yield return new WaitForSeconds ( 0.02f );
+            yield return new WaitForSeconds ( 0.05f );
         }
     }
 
