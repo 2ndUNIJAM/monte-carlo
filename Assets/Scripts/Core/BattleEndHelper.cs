@@ -6,7 +6,8 @@ namespace MonteCarlo.Core
     {
         public static void Win(Scene currentScene)
         {
-            SceneManager.UnloadSceneAsync(currentScene);
+            //SceneManager.UnloadSceneAsync(currentScene);
+            SceneManager.LoadScene("Win");
         }
 
         public static void Defeat()
