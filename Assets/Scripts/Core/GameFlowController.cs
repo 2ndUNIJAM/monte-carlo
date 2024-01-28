@@ -6,8 +6,10 @@ namespace MonteCarlo.Core
 {
     public class GameFlowController : SingletonBehaviour<GameFlowController>
     {
+
         [SerializeField] private List<string> SceneNames;
         private int idx = 0;
+        private bool isDefeat = false;
 
         private void Awake()
         {
@@ -16,14 +18,21 @@ namespace MonteCarlo.Core
 
         private void Load()
         {
-            var sceneName = SceneNames[idx];
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-            idx++;
-
-            if (idx < SceneNames.Count)
-                SceneManager.sceneUnloaded += GotoNextScene;
+            if (isDefeat)
+            {
+                SceneManager.LoadScene("Lose", LoadSceneMode.Single);
+            }
             else
-                SceneManager.sceneUnloaded += GoToWin;
+            {
+                var sceneName = SceneNames[idx];
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+                idx++;
+
+                if (idx < SceneNames.Count)
+                    SceneManager.sceneUnloaded += GotoNextScene;
+                else
+                    SceneManager.sceneUnloaded += GoToWin;
+            }
         }
 
         private void GotoNextScene(Scene scene)
@@ -38,6 +47,11 @@ namespace MonteCarlo.Core
             Debug.Log("OnSceneUnloaded: " + scene.name);
             SceneManager.LoadScene("Win", LoadSceneMode.Single);
             SceneManager.sceneUnloaded -= GoToWin;
+        }
+
+        public void Defeat()
+        {
+            isDefeat = true;
         }
     }
 }
