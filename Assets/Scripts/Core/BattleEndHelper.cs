@@ -6,13 +6,13 @@ namespace MonteCarlo.Core
     {
         public static void Win(Scene currentScene)
         {
-            //SceneManager.UnloadSceneAsync(currentScene);
-            SceneManager.LoadScene("Win");
+            SceneManager.UnloadSceneAsync(currentScene);
         }
 
-        public static void Defeat()
+        public static void Defeat(Scene currentScene)
         {
-            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
+            GameFlowController.Instance.Defeat();
+            SceneManager.UnloadSceneAsync(currentScene);
         }
     }
 }

@@ -244,7 +244,7 @@ namespace MonteCarlo.Core
         {
             if (player.Hp <= 0)
             {
-                BattleEndHelper.Defeat();
+                BattleEndHelper.Defeat(this.gameObject.scene);
             }
 
             else if (enemy.Hp <= 0)
