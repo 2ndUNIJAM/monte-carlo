@@ -42,35 +42,35 @@ namespace MonteCarlo.Core
 
         public void onRevolverRifleClip()
         {
-            Debug.Log("sound-rifle-spin");
+            //Debug.Log("sound-rifle-spin");
             OnAudio(revolverRifleClip);
         }
         public void onRevolverCockClip()
         {
-            Debug.Log("sound-cocking");
+            //Debug.Log("sound-cocking");
             OnAudio(revolverCockClip);
         }
         public void onRevolverShotClip()
         {
-            Debug.Log("sound-shot");
+            //Debug.Log("sound-shot");
             StartCoroutine(OnAudioCoroutine(new AudioClip[] { revolverShotClip, revolverRifleClip }, 1.7f));
         }
 
         public void onCardClip()
         {
-            Debug.Log("sound-card");
+            //Debug.Log("sound-card");
             var clip = Random.Range(0f, 1f) < 0.5f ? card001Clip : card002Clip;
             OnAudio(clip);
         }
         public void onDamageClip()
         {
-            Debug.Log("sound-damage");
+            //Debug.Log("sound-damage");
             OnAudio(damageClip);
         }
 
         public void onCoinClip()
         {
-            Debug.Log("sound-coin");
+            //Debug.Log("sound-coin");
             StartCoroutine(OnAudioCoroutine(new AudioClip[] { coinFlipClip, coinDropClip }, 1.4f));
         }
 

@@ -29,6 +29,8 @@ namespace MonteCarlo.UI
                 var cmd = CommandGenerator.Generate(type);
                 MainFlowBehaviour.Instance.AddCommand(cmd);
                 StartCoroutine(RotateCardAnim(3f)); // 선택 후 뒤집고, 3초 있다가 다시 뒤집힘
+                SoundManager.Instance.onCardClip();
+
             });
 
             cardImage = GetComponent<Image>();
@@ -175,9 +177,6 @@ namespace MonteCarlo.UI
 
             coroutineAllowed = true;
             facedUp = !facedUp;
-
-            //MainFlowBehaviour.Instance.AddCommand(CommandType);
-
         }
     }
 }
