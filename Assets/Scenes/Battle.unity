@@ -3041,6 +3041,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635463632}
   m_CullTransparentMesh: 1
+--- !u!95 &635463641 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5297756687589449896, guid: bfae9caf7c0e6714a9da4199cb249d45, type: 3}
+  m_PrefabInstance: {fileID: 1029409358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &636178152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4686,6 +4691,10 @@ PrefabInstance:
       propertyPath: type
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 668245209659252017, guid: bfae9caf7c0e6714a9da4199cb249d45, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 635463641}
     - target: {fileID: 1310823733694633966, guid: bfae9caf7c0e6714a9da4199cb249d45, type: 3}
       propertyPath: type
       value: 5
@@ -4826,7 +4835,8 @@ PrefabInstance:
       propertyPath: enemyRoll
       value: 
       objectReference: {fileID: 819657383}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4673665405503467988, guid: bfae9caf7c0e6714a9da4199cb249d45, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6213721648042395594, guid: bfae9caf7c0e6714a9da4199cb249d45, type: 3}
