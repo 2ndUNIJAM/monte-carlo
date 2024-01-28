@@ -32,7 +32,6 @@ namespace MonteCarlo.Expression
                 enemyResult.SetActive(false);
             }
 
-
             if (turn is TurnType.PlayerActionResult)
             {
                 playerRoll.SetActive(false);

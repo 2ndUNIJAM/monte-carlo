@@ -2,12 +2,15 @@ using System.Collections;
 using UnityEngine;
 using MonteCarlo.Core;
 using MonteCarlo.Data;
+using MonteCarlo.Util;
+using MonteCarlo.Expression;
 
 public class HpSlotMachine : MonoBehaviour
 {
     [SerializeField] private GameObject[] SlotSkillObject;
     [SerializeField] private GameObject[] Slot;
     [SerializeField] private CharacterType characterType;
+    [SerializeField] private CommandType type;
 
     private int DisplayHp = 123;
     private int Hp_1, Hp_2, Hp_3;
@@ -58,7 +61,10 @@ public class HpSlotMachine : MonoBehaviour
                 StartCoroutine(StartSlot(i));
             }
         }
-        
+
+        //var cmd = CommandGenerator.Generate(type);
+        //MainFlowBehaviour.Instance.AddCommand(cmd);
+
     }
 
     private IEnumerator StartSlot(int SlotIndex)

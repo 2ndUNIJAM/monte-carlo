@@ -23,7 +23,7 @@ namespace MonteCarlo.Core
             if (idx < SceneNames.Count)
                 SceneManager.sceneUnloaded += GotoNextScene;
             else
-                SceneManager.sceneUnloaded += GotoTitle;
+                SceneManager.sceneUnloaded += GoToWin;
         }
 
         private void GotoNextScene(Scene scene)
@@ -33,11 +33,11 @@ namespace MonteCarlo.Core
             SceneManager.sceneUnloaded -= GotoNextScene;
         }
 
-        private void GotoTitle(Scene scene)
+        private void GoToWin(Scene scene)
         {
             Debug.Log("OnSceneUnloaded: " + scene.name);
-            SceneManager.LoadScene("Title", LoadSceneMode.Single);
-            SceneManager.sceneUnloaded -= GotoTitle;
+            SceneManager.LoadScene("Win", LoadSceneMode.Single);
+            SceneManager.sceneUnloaded -= GoToWin;
         }
     }
 }
