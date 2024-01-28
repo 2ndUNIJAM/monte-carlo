@@ -7,6 +7,8 @@ namespace MonteCarlo.Core
     public class BackToTitle : MonoBehaviour
     {
         [SerializeField] Button button;
+        [SerializeField] Button CreditButton;
+        [SerializeField] GameObject Credit;
 
         void Start()
         {
@@ -19,6 +21,16 @@ namespace MonteCarlo.Core
         public void LoadTitle()
         {
             SceneManager.LoadScene("Title", LoadSceneMode.Single);
+        }
+
+        public void LoadCredit()
+        {
+            Credit.SetActive(true);
+        }
+
+        public void CreditClose()
+        {
+            Credit.SetActive(false);
         }
     }
 }
