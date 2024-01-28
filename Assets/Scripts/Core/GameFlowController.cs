@@ -52,6 +52,7 @@ namespace MonteCarlo.Core
         public void Defeat()
         {
             isDefeat = true;
+            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
         }
     }
 }
