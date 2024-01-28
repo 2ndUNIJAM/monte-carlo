@@ -106,9 +106,6 @@ namespace MonteCarlo.Core
         {
             return player.HealInfo.Probability;
         }
-        public float getEnemyProbability() {
-            return enemy.getProbability();
-        }
 
         private void PlayerTurn(ICommand command)
         {
