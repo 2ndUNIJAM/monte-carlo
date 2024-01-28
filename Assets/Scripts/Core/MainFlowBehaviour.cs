@@ -72,7 +72,6 @@ namespace MonteCarlo.Core
                     case TurnType.PlayerActionResult:
                         break;
                     case TurnType.Enemy:
-                        SoundManager.Instance.onCardClip();
                         break;
                     case TurnType.EnemyRandomRoll:
                         break;
@@ -107,11 +106,12 @@ namespace MonteCarlo.Core
         {
             return player.HealInfo.Probability;
         }
-
+        public float getEnemyProbability() {
+            return enemy.getProbability();
+        }
 
         private void PlayerTurn(ICommand command)
         {
-            SoundManager.Instance.onCardClip();
             switch (command)
             {
                 case PlayerCommandTurnEnd:
@@ -122,6 +122,7 @@ namespace MonteCarlo.Core
                         var result = player.AttackAction();
                         Debug.Log($"공격 결과: {result.IsSuccess}, 데미지: {result.Value}");
                         enemy.DecreaseHp(result.Value);
+
                         turn.ApplyResult(result);
                         SoundManager.Instance.onCoinClip();
 
@@ -158,7 +159,6 @@ namespace MonteCarlo.Core
                     Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
                     break;
             }
-
         }
 
         private void PlayerActionResult(ICommand command)
@@ -188,6 +188,7 @@ namespace MonteCarlo.Core
                 case EnemyCommandAction actionCmd:
                     {
                         var result = enemy.Execute(actionCmd.ActionType);
+
                         Debug.Log($"행동 결과: {result.IsSuccess}, 행동 타입: {result.Result}, 값: {result.Value}");
                         turn.ApplyResult(result);
                         break;
@@ -209,15 +210,28 @@ namespace MonteCarlo.Core
                         if (result.Result is ResultType.GetDamage)
                         {
                             player.DecreaseHp(result.Value);
-                            SoundManager.Instance.onRevolverShotClip();
+                            switch (BattleDataHolder.Instance.Enemy.Type)
+                            {
+                                //case EnemyType.Revolver:
+                                //    SoundManager.Instance.onRevolverShotClip();
+                                //    break;
+                                //case EnemyType.Dice:
+                                //    break;
+                            }
                         }
                         if (result.Result is ResultType.GetHeal)
                             enemy.IncreateHp(result.Value);
                     }
 
                     turn.NextTurn();
-                    SoundManager.Instance.onRevolverCockClip();
-
+                    switch (BattleDataHolder.Instance.Enemy.Type)
+                    {
+                        //case EnemyType.Revolver:
+                        //    SoundManager.Instance.onRevolverCockClip();
+                        //    break;
+                            //case EnemyType.Dice:
+                            //    break;
+                    }
                     break;
                 default:
                     Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
