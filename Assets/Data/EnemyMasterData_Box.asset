@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyMasterData_Box
   m_EditorClassIdentifier: 
   Type: 2
-  MaxHP: 100
+  MaxHP: 150
   actionTypes: 03000000040000000500000006000000

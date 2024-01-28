@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Revolver:
     cylinderCnt: 6
-    Damage: 15
+    Damage: 70
   DiceAttack:
     Damages: 010000000200000003000000040000000500000006000000
   DiceHeal:

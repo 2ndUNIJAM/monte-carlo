@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyMasterData_Dice
   m_EditorClassIdentifier: 
   Type: 1
-  MaxHP: 100
+  MaxHP: 150
   actionTypes: 0100000002000000

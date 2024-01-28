@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655c5ffa417515345ab4eb73c1c5bd5e, type: 3}
   m_Name: EnemyMasterData_Revolver
   m_EditorClassIdentifier: 
-  MaxHP: 100
+  Type: 0
+  MaxHP: 150
   actionTypes: 00000000
