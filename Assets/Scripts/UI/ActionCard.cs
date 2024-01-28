@@ -3,72 +3,162 @@ using MonteCarlo.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 namespace MonteCarlo.UI
 {
     public class ActionCard : MonoBehaviour
     {
-        [SerializeField] private Button button;
+        private EnemyMasterDataModel enemyData => BattleDataHolder.Instance.Enemy;
+
         [SerializeField] private CommandType type;
-        [SerializeField] private TextMeshProUGUI valueText;
-        [SerializeField] private TextMeshProUGUI probabilityText;
         [SerializeField] private Sprite[] cardResourceImage;
         private Image cardImage;
 
-        const int MULTIPLER = 100;
+        private bool coroutineAllowed;
+        private float delayTimer = 0.0f;
 
-        private float DelayTimer = 1.0f; // 임시
-
-        void Update()
+        private void Start()
         {
-            var mainFlow = MainFlowBehaviour.Instance;
-            //if (mainFlow.Turn is TurnType.Player) return;
-            DelayTimer -= Time.deltaTime;
-
+            coroutineAllowed = true;
             cardImage = GetComponent<Image>();
-            switch (mainFlow.Turn)
+            //var mainFlow = MainFlowBehaviour.Instance;
+            //var prob = mainFlow.getEnemyProbability();
+
+            // 적 종류 먼저 분기
+            switch (enemyData.Type)
             {
-                case TurnType.EnemyRandomRoll:
-                case TurnType.EnemyActionResult:
-                    {
-                        var value = 0;
-                        var probability = 0.0f;
-                        var imageIndex = 1;
-                        changeActionButton(value, probability, imageIndex);
+                //case EnemyType.Revolver:
+                //    {
+                //        if (prob <= 1 / 6.0f)
+                //        {
+                //            Debug.Log("1/6");
+                //            var imageIndex = 5;
+                //            changeActionCard(imageIndex);
+                //        }
+                //        else if (prob <= 1 / 5.0f)
+                //        {
+                //            Debug.Log("1/5");
+                //            var imageIndex = 4;
+                //            changeActionCard(imageIndex);
+                //        }
+                //        else if (prob <= 1 / 4.0f)
+                //        {
+                //            Debug.Log("1/4");
+                //            var imageIndex = 3;
+                //            changeActionCard(imageIndex);
+                //        }
+                //        else if (prob <= 1 / 3.0f)
+                //        {
+                //            Debug.Log("1/3");
+                //            var imageIndex = 2;
+                //            changeActionCard(imageIndex);
+                //        }
+                //        else if (prob <= 1 / 2.0f)
+                //        {
+                //            Debug.Log("1/2");
+                //            var imageIndex = 1;
+                //            changeActionCard(imageIndex);
+                //        }
+                //        else if (prob <= 1 / 1.0f)
+                //        {
+                //            Debug.Log("1/1");
+                //            var imageIndex = 0;
+                //            changeActionCard(imageIndex);
+                //        }
+                //        break;
+                //    }
+                case EnemyType.Dice:
 
-                        break;
-                    }
-                default:
-                    {
-                        switch (type)
-                        {
-                            case CommandType.EnemyRevolverAction:
-                                {
-                                    if (DelayTimer > 0) return;
-                                    DelayTimer = 1.0f;
+                    break;
+            }
+        }
+        private void Update()
+        {
+            if (MainFlowBehaviour.Instance.Turn is TurnType.EnemyRandomRoll)
+            {
+                delayTimer -= Time.deltaTime;
+                if (delayTimer > 0) return;
 
-                                    var value = 50;
-                                    var probability = 0.2f;
-                                    var imageIndex = 0;
-                                    changeActionButton(value, probability, imageIndex);
-                                    break;
-                                }
-                            // 나중에 heal 추가
-                            default:
-                                break;
-                        }
-                        break;
-                    }
+                if (coroutineAllowed)
+                {
+                    StartCoroutine(RotateCard());
+                }
+                delayTimer = 1.0f;
             }
         }
 
-        private void changeActionButton(int value, float probability, int spriteIdx)
+        private IEnumerator RotateCard()
         {
-            valueText.text = $"{value.ToString()}";
-            probabilityText.text = $"{(probability * MULTIPLER).ToString()}%";
+            coroutineAllowed = false;
+            for (float i = 0f; i <= 90f; i += 10f)
+            {
+                transform.rotation = Quaternion.Euler(0f, i, 0f);
+                if (i == 90f)
+                {
+                    // 적 종류 먼저 분기
+                    switch (enemyData.Type)
+                    {
+                        //case EnemyType.Revolver:
+                        //    {
+                        //        if (prob <= 1 / 6.0f)
+                        //        {
+                        //            Debug.Log("1/6");
+                        //            var imageIndex = 5;
+                        //            changeActionCard(imageIndex);
+                        //        }
+                        //        else if (prob <= 1 / 5.0f)
+                        //        {
+                        //            Debug.Log("1/5");
+                        //            var imageIndex = 4;
+                        //            changeActionCard(imageIndex);
+                        //        }
+                        //        else if (prob <= 1 / 4.0f)
+                        //        {
+                        //            Debug.Log("1/4");
+                        //            var imageIndex = 3;
+                        //            changeActionCard(imageIndex);
+                        //        }
+                        //        else if (prob <= 1 / 3.0f)
+                        //        {
+                        //            Debug.Log("1/3");
+                        //            var imageIndex = 2;
+                        //            changeActionCard(imageIndex);
+                        //        }
+                        //        else if (prob <= 1 / 2.0f)
+                        //        {
+                        //            Debug.Log("1/2");
+                        //            var imageIndex = 1;
+                        //            changeActionCard(imageIndex);
+                        //        }
+                        //        else if (prob <= 1 / 1.0f)
+                        //        {
+                        //            Debug.Log("1/1");
+                        //            var imageIndex = 0;
+                        //            changeActionCard(imageIndex);
+                        //        }
+                        //        break;
+                        //    }
+                        case EnemyType.Dice:
+
+                            break;
+                    }
+                }
+                yield return new WaitForSeconds(0.01f);
+            }
+            for (float i = 90f; i >= 0f; i -= 10f)
+            {
+                transform.rotation = Quaternion.Euler(0f, i, 0f);
+                yield return new WaitForSeconds(0.01f);
+            }
+            coroutineAllowed = true;
+        }
+
+
+
+        private void changeActionCard(int spriteIdx)
+        {
             cardImage.sprite = cardResourceImage[spriteIdx];
         }
     }
-
-
 }
