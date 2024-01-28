@@ -14,7 +14,6 @@ namespace MonteCarlo.Player
         public int Hp { get; private set; }
         public float HpRatio => (float)Hp / MaxHp;
         public int Defence { get; private set; }
-        public int Heal { get; private set; }
 
         private readonly PlayerMasterDataModel data;
 
@@ -22,8 +21,6 @@ namespace MonteCarlo.Player
         {
             this.data = data;
             Hp = data.MaxHP;
-            Defence = data.Defence.DefenceAmount;
-            Heal = data.Heal.HealAmount;
         }
 
         public void DecreaseHp(int value)
@@ -59,6 +56,11 @@ namespace MonteCarlo.Player
                 Result = isSuccess ? ResultType.GetShield : ResultType.None,
                 Value = isSuccess ? defenceData.DefenceAmount : 0,
             };
+        }
+
+        public void ShieldReset()
+        {
+            Defence = 0;
         }
 
         public ActionResult HealHP()

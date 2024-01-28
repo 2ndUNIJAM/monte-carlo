@@ -9,26 +9,39 @@ namespace MonteCarlo.Expression
     {
         [SerializeField] private Animator animator;
         [SerializeField] private CommandType type;
+        private float delay = 3f;
 
         private void OnEnable()
         {
             // TODO: 애니메이션 재생.
-            if (animator !=null)
+            if (animator != null)
             {
                 animator.Play("Execute");
             }
             else
             {
                 // 임시
-                Callback();
+                // Callback();
+                delay = 3f;
             }
         }
 
         void Update()
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (animator != null)
             {
-                Callback();
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    Callback();
+                }
+            }
+            else
+            {
+                delay -= Time.deltaTime;
+                if (delay <= 0)
+                {
+                    Callback();
+                }
             }
         }
 
@@ -37,9 +50,8 @@ namespace MonteCarlo.Expression
         {
             var cmd = CommandGenerator.Generate(type);
             MainFlowBehaviour.Instance.AddCommand(cmd);
-
         }
     }
 
-    
+
 }

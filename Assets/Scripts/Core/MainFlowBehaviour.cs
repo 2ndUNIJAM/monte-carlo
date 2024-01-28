@@ -66,6 +66,7 @@ namespace MonteCarlo.Core
                 switch (turn.Turn)
                 {
                     case TurnType.Player:
+                        player.ShieldReset();
                         break;
                     case TurnType.PlayerRandomRoll:
                         break;
@@ -74,6 +75,17 @@ namespace MonteCarlo.Core
                     case TurnType.Enemy:
                         break;
                     case TurnType.EnemyRandomRoll:
+                        var result = turn.EnemyResult;
+                        if (result.IsSuccess)
+                        {
+                            if (result.Result is ResultType.GetDamage)
+                            {
+                                player.DecreaseHp(result.Value);
+                                SoundManager.Instance.onRevolverShotClip();
+                            }
+                            if (result.Result is ResultType.GetHeal)
+                                enemy.IncreateHp(result.Value);
+                        }
                         break;
                     case TurnType.EnemyActionResult:
                         break;
@@ -201,34 +213,7 @@ namespace MonteCarlo.Core
             switch (command)
             {
                 case EnemyCommandRollEnd:
-                    var result = turn.EnemyResult;
-                    if (result.IsSuccess)
-                    {
-                        if (result.Result is ResultType.GetDamage)
-                        {
-                            player.DecreaseHp(result.Value);
-                            switch (BattleDataHolder.Instance.Enemy.Type)
-                            {
-                                //case EnemyType.Revolver:
-                                //    SoundManager.Instance.onRevolverShotClip();
-                                //    break;
-                                //case EnemyType.Dice:
-                                //    break;
-                            }
-                        }
-                        if (result.Result is ResultType.GetHeal)
-                            enemy.IncreateHp(result.Value);
-                    }
-
                     turn.NextTurn();
-                    switch (BattleDataHolder.Instance.Enemy.Type)
-                    {
-                        //case EnemyType.Revolver:
-                        //    SoundManager.Instance.onRevolverCockClip();
-                        //    break;
-                            //case EnemyType.Dice:
-                            //    break;
-                    }
                     break;
                 default:
                     Debug.LogWarning($"Turn-Command mismatch - Turn: {Turn} / Command: {command}");
