@@ -119,6 +119,11 @@ namespace MonteCarlo.Core
             return player.HealInfo.Probability;
         }
 
+        public float getPlayerDefence()
+        {
+            return player.Defence;
+        }
+
         private void PlayerTurn(ICommand command)
         {
             switch (command)
